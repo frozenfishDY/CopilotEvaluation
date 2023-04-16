@@ -22,30 +22,6 @@
  * @return {number[]}
  */
 var treeQueries = function(root, queries) {
-    let n = queries.length;
-    let ans = new Array(n).fill(0);
-    let map = new Map();
-    let dfs = (node) => {
-        if(node == null){
-            return 0;
-        }
-        let left = dfs(node.left);
-        let right = dfs(node.right);
-        let height = 1 + Math.max(left, right);
-        map.set(node.val, height);
-        return height;
-    }
-    dfs(root);
-    let max = 0;
-    for(let i = 0; i < n; i++){
-        map.delete(queries[i]);
-        for(let [key, value] of map){
-            max = Math.max(max, value);
-        }
-        ans[i] = max;
-        max = 0;
-    }
-    return ans;
     
 };
 

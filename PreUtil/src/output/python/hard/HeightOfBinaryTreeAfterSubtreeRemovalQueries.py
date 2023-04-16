@@ -21,7 +21,6 @@ class Solution(object):
         :type queries: List[int]
         :rtype: List[int]
         """
-        return 0
         
         
     

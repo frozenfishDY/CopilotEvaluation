@@ -25,37 +25,6 @@
  */
 class HeightOfBinaryTreeAfterSubtreeRemovalQueries {
     public int[] treeQueries(TreeNode root, int[] queries) {
-        int[] res = new int[queries.length];
-        Map<Integer, TreeNode> map = new HashMap<>();
-        map.put(root.val, root);
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty()){
-            TreeNode node = q.poll();
-            if(node.left != null){
-                map.put(node.left.val, node.left);
-                q.offer(node.left);
-            }
-            if(node.right != null){
-                map.put(node.right.val, node.right);
-                q.offer(node.right);
-            }
-        }
-        for(int i = 0; i < queries.length; i++){
-            TreeNode node = map.get(queries[i]);
-            if(node == root){
-                res[i] = 0;
-                continue;
-            }
-            TreeNode parent = map.get(node.val);
-            if(parent.left == node){
-                parent.left = null;
-            }else{
-                parent.right = null;
-            }
-            res[i] = height(root);
-        }
-        return res;
         
     }
 }

@@ -20,21 +20,6 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* treeQueries(struct TreeNode* root, int* queries, int queriesSize, int* returnSize){
-    int i,j,k;
-    int* arr = (int*)malloc(sizeof(int)*2);
-    for(i=0;i<2;i++){
-        arr[i] = 0;
-    }
-    arr[0] = 1;
-    for(i=0;i<strlen(s);i++){
-        if(s[i] == '0'){
-            arr[0] = (arr[0] + arr[1])%1000000007;
-        }
-        else{
-            arr[1] = (arr[0] + arr[1])%1000000007;
-        }
-    }
-    return arr[0];
 
 }
 
