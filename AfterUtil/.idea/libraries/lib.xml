@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/com/alibaba/fastjson/1.2.83/fastjson-1.2.83.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/junit/junit/4.13.1/junit-4.13.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/org/json/json/20211205/json-20211205.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/com/fasterxml/jackson/core/jackson-annotations/2.12.1/jackson-annotations-2.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/com/fasterxml/jackson/core/jackson-core/2.12.1/jackson-core-2.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Program Files/maven/maven-repository/com/fasterxml/jackson/core/jackson-databind/2.12.1/jackson-databind-2.12.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/lib" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,32 @@
+/**https://leetcode.com/problems/find-the-string-with-lcp/ */
+//We define the lcp matrix of any 0-indexed string word of n lowercase English letters as an n x n grid such that:
+//lcp[i][j] is equal to the length of the longest common prefix between the substrings word[i,n-1] and word[j,n-1].
+//Given an n x n matrix lcp, return the alphabetically smallest string word that corresponds to lcp. If there is no such string, return an empty string.
+//A string a is lexicographically smaller than a string b (of the same length) if in the first position where a and b differ, string a has a letter that appears earlier in the alphabet than the corresponding letter in b. For example, "aabd" is lexicographically smaller than "aaca" because the first position they differ is at the third letter, and 'b' comes before 'c'.
+
+
+class FindTheStringWithLcp {
+    public String findTheString(int[][] lcp) {
+        int n = lcp.length;
+        char[] ans = new char[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = 'a';
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (lcp[i][j] == n - i) {
+                    continue;
+                }
+                if (ans[i + lcp[i][j]] == 'a') {
+                    ans[i + lcp[i][j]] = (char) (ans[i] + 1);
+                } else if (ans[i + lcp[i][j]] != ans[i] + 1) {
+                    return "";
+                }
+            }
+        }
+        return new String(ans);
+        
+    }
+}
+     
+    
