@@ -42,7 +42,7 @@
 
 ### 2.4 ***RQ*4**:  What are the reasons for the incorrectness of Copilot’s code suggestions?
 
-![Table3](./assets/Table3.png)
+![Table3](./IMG/Table3.png)
 
 
 
