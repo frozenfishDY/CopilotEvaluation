@@ -4,7 +4,7 @@
 - [Evaluation Result](#2.Evaluation-Result)
 - [Structure of the project](#3.Structure-of-the-Project)
 
-![DataCollection](./IMG/DataCollection.png)
+![DataCollection](./IMG/DataCollection.jpg)
 
 
 
