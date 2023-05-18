@@ -26,6 +26,13 @@
 
 ### 2.1 ***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
 
+<figure>
+    <img src="./IMG/Table1.png">
+    <figcaption align="center"><b>Table 1. Performance of Copilot</b></figcaption>
+</figure>
+
+
+
 <center>Table1</center>
 
 <center>Performance of Copilot</center>
