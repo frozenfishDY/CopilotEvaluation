@@ -26,13 +26,6 @@
 
 ### 2.1 ***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
 
-<figure>
-    <img src="./IMG/Table1.png">
-    <figcaption align="center"><b>Table 1. Performance of Copilot</b></figcaption>
-</figure>
-
-
-
 <center>Table1</center>
 
 <center>Performance of Copilot</center>
@@ -197,7 +190,7 @@ For the ***Compile Error*** (C and Java) and ***Runtime Error*** (JavaScript and
 ## 3.Structure of the Project
 
 ```powershell
-├── Tool                  :tools that generate code files and analysis submission result
+├──                   :tools that generate code files and analysis submission result
 ├── IMG                   :image
 ├── Output                :code suggestion files                
 ├── RQ1_TO_RQ3            :result of RQ1~RQ3
