@@ -213,7 +213,7 @@ For the ***Compile Error*** (C and Java) and ***Runtime Error*** (JavaScript and
 
 <center>The Reasons for Compile Error and Runtime Error</center>
 
-![Table3](./IMG/Table3.png)
+![Table3](./IMG/Table4.png)
 
 
 
