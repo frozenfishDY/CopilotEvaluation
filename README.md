@@ -190,7 +190,7 @@ For the ***Compile Error*** (C and Java) and ***Runtime Error*** (JavaScript and
 ## 3.Structure of the Project
 
 ```powershell
-├──                   :tools that generate code files and analysis submission result
+├── Tool                  :tools that generate code files and analysis submission result
 ├── IMG                   :image
 ├── Output                :code suggestion files                
 ├── RQ1_TO_RQ3            :result of RQ1~RQ3
