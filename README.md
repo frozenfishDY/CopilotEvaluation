@@ -1,239 +1,192 @@
-# Correctness of GitHub Copilot’s Code Suggestions Analysis
+# Assessing and Analyzing the Correctness of Github Copilot's Code Suggestions
 
 - [Introduction](#1.Introduction ) 
-- [Evaluation Result](#2.Evaluation-Result)
-- [Structure of the project](#3.Structure-of-the-Project)
+- [Project structure and explanation](#2.Project-Structure-and-explanation)
+- [Evaluation Result](#3.Evaluation-Result)
 
-![DataCollection](./IMG/DataCollection.jpg)
+![ExperimentProcess](./Figure/ExperimentProcess.png)
 
 
 
 ## 1.Introduction
 
-  For each problem, we use Copilot to generate code suggestions in four popular programming languages, including C, Java, JavaScript, and Python. Then we run the code suggestions one by one on LeetCode’s online coding environment. By collecting and analyzing their execution status and details, we conduct an empirical study on evaluating the correctness of Copilot, use a dataset with 990 coding problems and extensively answer the following research questions:
+  we aim to analyze and evaluate the performance of Copilot's multi-language code suggestions. To proceed with our study, we first collect all open-source questions from the question website LeetCode, which totally contains 2,033 coding problems with three difficulty levels and twenty question types. Moreover, we attempt to collect defective code suggestions and the corresponding causes. Meanwhile, we try to analyze why Copilot generates these defective codes, so as to have a comprehensive understanding and analysis of Copilot's defective codes. To facilitate our experiments, we have designed relevant tools to help researchers automatically collect questions, create code suggestions, and analyze execution results. 
 
 ***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
 
-***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot?
+***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot? 
 
-***RQ*3**:   For the coding problems in different domains, What is the performance of Copilot?
+***RQ*3**:   For the coding problems in different domains, what is the performance of Copilot?
 
-***RQ*4**:  What are the reasons for the incorrectness of Copilot’s code suggestions?
+***RQ*4**:  What are the reasons for the incorrectness of Copilot's code suggestions and why?
+
+The date of our experiments and the relevant versions of the tools are shown in Table 1
+
+![Table1](./Figure/Table1_Version.png)
 
 
 
-## 2.Evaluation Result
+## 2.Project Structure and explanation
 
-### 2.1 ***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
+```powershell
+├── Figure                     
+├── output                             
+├── results
+   ├── RQ1_to_RQ3
+   ├── RQ4
+   └── calculator.py
+├── AllData.xlsx
+├── collector.py      
+├── README.md         
+└── record.xlsx       
+```
 
-<center>Table1</center>
+- ***Figure***  : Experimental result pictures and error cause code examples
+- ***output*** : All code suggestion files, sorted by language and difficulty
+- **results/RQ1_to_RQ3**:   Experimental results from RQ1 to RQ3
+- **results/RQ4** :    Experimental results of RQ4
+- **results/calculator.py**:   This script file is used to calculate the indicators and ratios of RQ1~RQ4
+- ***AllData.xlsx*** :   This file is used to store all LeetCode issues crawled by collector.py
+- ***collector.py*** :   This script is used to crawl all LeetCode questions (satisfying 4 programming languages) and store the content in *AllData.xlsx*. The script also generates a code suggestion file from the extracted content into the *output* folder.
+- ***record.xlsx***:     This file is a record of the experimental sample, including the link to the question, difficulty, execution status of the corresponding language code suggestion, question type, and all error types(Because the file is too large, we package it into a compressed file).
+- ***README.md***:   User guidance
 
-<center>Performance of Copilot</center>
+## 3.Evaluation Result
 
-![Table1](./IMG/Table1.png)
+### 3.1 ***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
 
-### 2.2 ***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot?
+![Table2](./Figure/Table2_Overall.png)
 
-<center>Table2</center>
+### 3.2 ***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot?
 
-<center>Performance of Copilot in Easy, Medium, Hard problems</center>
-
-![Table2](./IMG/Table2.png)
+![Table3](./Figure/Table3_Difficulty.png)
 
 ### 2.3 ***RQ*3**: For the coding problems in different domains, What is the performance of Copilot?
 
-<center>Copilot's Performance on the Code Problems in Different Types</center>
+![Rq3_Overall](./Figure/rq3_Copilot.png)
 
-![Table3](./IMG/TypePerformance.png)
+<center>Overall Performance of Copilot</center>
 
 
 
+![RQ3_C](./Figure/rq3_c.png)
 
+<center>Performance of C</center>
 
-### 2.4 ***RQ*4**:  What are the reasons for the incorrectness of Copilot’s code suggestions?
 
-#### 2.4.1 Code Abnormalities Definitions
 
-For code suggestions not in *Accepted* status, we dig into the following reasons why they couldn't get accepted. We inspected coed suggestions in Wrong Answer, Compile Error and Runtime Error that mainly leading to incorrect code according to Table 1.
+![RQ3_Java](./Figure/rq3_java.png)
 
-***Code Abnormalities***. A large number of code suggestions exhibit "abnormal" implementations. We define these code abnormalities into the following types.
+<center>Performance of Java</center>
 
-- *Undefined Function Reference*: the suggested code fails due to referring to an undefined function that hasn't been implemented. Figure 1  shows an example of this type, from which we can see that function *isSimilar()* is not implemented in the suggested code fragments.
 
-  
 
-  ![Fig1](./IMG/Fig1.png)
+![RQ3_JS](./Figure/rq3_js.png)
 
-  <center>Fig. 1. Example of Undefined Function Reference, Problems: Count Pairs of Similar Strings</center>
+<center>Performance of JavaScript</center>
 
-  
 
-- *Variable Exhaustion*: the suggested code contains a huge number of variable definitions. Figure 2 shows an example of this type.
 
-  ![Fig2](./IMG/Fig2.png)
+![RQ3_Py](./Figure/rq3_python.png)
 
-  <center>Fig. 2. Example of Variable Exhaustion, Problem: Combination Sum</center>
+<center>Performance of Python</center>
 
-  
+### 3.4 ***RQ*4**:  What are the reasons for the incorrectness of Copilot’s code suggestions and why?
 
-- *For/if Exhaustion*: the suggested code contains a large number of repeated *for* or *if* statements. Figure 3 and Figure 4 show examples of this type in a nested or sequential form, respectively. We find this type often leads to unclosed statement blocks because of the extensive *if* or *for* statements.
+#### 3.4.1 Wrong Answer Results
 
-  ![Fig3](./IMG/Fig3.png)
+![WrongAnswer](./Figure/Table4_WrongAnswer.png)
 
-  <center>Fig. 3. Example of For/if Exhaustion in nested form, Problem: Word Search</center>
 
-  
 
-  ![Fig4](./IMG/Fig4.png)
+#### 3.4.2 Compile Error Results
 
-  <center>Fig. 4. Example of For/if Exhaustion in sequential form, Problem: Find Kth Largest XOR Coordinate Value</center>
+![CompileError](./Figure/Table5_CompileError.png)
 
-  
 
-- *Return Only*: the suggested code only contains the return statement or returns an assigned variable. Figure 5 shows an example. We have found that this type of abnormality only occurs in Python.
 
-  ![Fig5](./IMG/Fig5.png)
+#### 3.4.3 Runtime Error Results
 
-  <center>Fig. 5. Example of Return Only, Problem: Valid Parenthesis String</center>
+![RuntimeError](./Figure/Table6_RuntimeError.png)
 
-  
+#### 3.4.4 Error type explanation
 
-- *Comments Only*: the suggested code only contains comments. Figure 6 shows an example. We find this kind of abnormality only happens in Python as well.
+***Wrong Answer:***
 
-  ![Fig6](./IMG/Fig6.png)
+- *logic Error*:  there is nothing wrong with the code itself, but the logic suggested by the code does not allow it to pass all test cases.
 
-  <center>Fig. 6. Example of Comments Only, Problem: Permutation Sequence</center>
+- *Return Only*:  the code in this case only contains ***return*** statements. There are three forms of return statements: 1) Return function parameters directly; 2) Return constants; 3) Return function parameters after constant assignment.
 
-  
+  ![ReturnOnly](./Figure/ErrorSample/ReturnOnly.png)
 
-- *Empty Code*: there is no code suggestion generated by Copilot. Only one coding problem encounters this(Problem: *Basic Calculator IV*).
-- *Variable/Class Related Error*:  the suggested code fails due to referring to undefined or uninitialized variables or classes. Figure 7 shows an example that  *count* is an undeclared variable leading to compile error.
+- *Pass Only*:  this code case only appears in Python. the code suggestion does nothing by only giving  the pass statement.
 
-![Fig7](./IMG/Fig7.png)
+![ReturnOnly](./Figure/ErrorSample/PassOnly.png)
 
-<center>Fig. 7. Example of Variable/Class Related Error, Problem: Find And Replace in String</center>
 
 
 
-- *Syntax Error*: suggested code contains statements that disobey the syntax. Figure 8 shows an example that places a double value at the ends of *%*.
 
-![Fig8](./IMG/Fig8.png)
+***Compile Error:***
 
-<center>Fig. 8. Example of Syntax Error, Problem: Super Pow</center>
+- *Undeclared Variable*: the code suggestion references an undeclared variable or undeclared member variable in a data structure.
 
+![UV](./Figure/ErrorSample/UndeclaredVariable.png)
 
+- *Variable Redeclaration*: the code suggestion redeclares a variable name.
 
-- *Incorrect Function Reference*: the suggested code incorrectly references existing functions, which is usually caused by the conflicts of argument quantities or argument types. Figure 9 shows an example that the argument of the referenced function *rob()* should be an *int* array.
+![VR](./Figure/ErrorSample/VariableRedeclaration.png)
 
-![Fig9](./IMG/Fig9.png)
+- *Undefined Class Reference*: the code suggestion references undefined class.
 
-<center>Fig. 9. Example of Incorrect Function Reference, Problem: House Robber II</center>
+![UCR](./Figure/ErrorSample/UndefinedClassReference.png)
 
+- *Variable Declaration Only*: the code suggestion generates only a series of variable declaration statements. And when we call Copilot at the end of the code, we still get a series of declaration statements.
 
+![VDO](./Figure/ErrorSample/VariableDeclarationOnly.png)
 
-- *Heap out of Memory*: the running of the suggested code in JavaScript exceeds the heap memory. Figure 10 shows an example.
+- *Undefined Function Reference*: In this case, the code suggestion references a function that is not defined in the code environment. If we call Copilot on these undefined functions, Copilot also cannot generate the specific implementation code of the unknown function.
 
-![Fig10](./IMG/Fig10.png)
+![UFR](./Figure/ErrorSample/UndefinedFunctionReference.png)
 
-<center>Fig. 10. Example of Heap out of Memory, Problem: Create Maximum Number</center>
+- *For/If Only*: the code suggestion in this case contains a large number of For/if statement blocks. Likewise, when we call Copilot at the end of the code, you just get infinite for/if blocks.
 
+![FIO](./Figure/ErrorSample/ForIfOnly.png)
 
+- *Conflicting Types*: the code suggestions can not be accepted because of data type conflicts, which mainly include the following situations:
 
-- *Index Error*: the index of a data Structure (*e.g Array, List, etc.*) in the suggested code exceeds its specified range. Figure 11 shows an example.
+​       a) The variable data types at both ends of the operator conflict, such as *double* % *int*;
 
-![Fig11](./IMG/Fig11.png)
+​       b) The function return value type does not match the specified type;
 
-<center>Fig. 11. Example of Index Error, Problem: House Robber IV</center>
+​       c) When assigning or initializing variables, the given data type conflicts with the defined type, such as *int a=’c*’.
 
+![FIO](./Figure/ErrorSample/ConflictingTypes.png)
 
 
-- *Type Error*: the suggested in Python returns the wrong type value or references wrong type variables. Figure 12 shows an example.
 
-![Fig12](./IMG/Fig12.png)
+***Runtime Error:***
 
-<center>Fig. 12. Example of Type Error, Problem: Maximum Swap</center>
+- *Data Overflow*: When the program is running, the data stored in the variable exceeds its capacity.
 
+![FIO](./Figure/ErrorSample/DataOverflow.png)
 
+- *Heap/Stack Overflow*: When the program is running, the heap or stack buffer overflows.
 
-- *Naming Error*: the suggested code in Python references undefined variables. Figure 13 shows an example.
+![FIO](./Figure/ErrorSample/HeapStackOverflow.png)
 
-![Fig13](./IMG/Fig13.png)
+- *Memory Error*: Insufficient memory during program running.
 
-<center>Fig. 13. Example of Naming Error, Problem: Largest Sum of Averages</center>
+![FIO](./Figure/ErrorSample/MemoryError.png)
 
+- *Null Pointer Error*: This errors occurs when the program accesses or references a **NULL** value data object.
 
+![FIO](./Figure/ErrorSample/NUllPointerError.png)
 
-- *Value Error*: there is at least one empty-value argument in the functions of the suggested code. Figure 14 shows an example.
+- *Arithmetic Error*: Exceptions in mathematical operations in the program, such as *a/0* or *a%0*.
 
-![Fig14](./IMG/Fig14.png)
+![FIO](./Figure/ErrorSample/ArithmeticError.png)
 
-<center>Fig. 14. Example of Value Error, Problem: Maximum Depth of N-ary Tree</center>
+- *Iteration Error*: The objects being iterated in the program are not iterable, such as traversing *integer* or *boolean* types.
 
-
-
-- *Variable Reference Error*: the suggested code refers unassigned variable. Figure 15 shows an example.
-
-![Fig15](./IMG/Fig15.png)
-
-<center>Fig. 15. Example of Variable Reference Error, Problem: Palindrome Number</center>
-
-
-
-- *Memory Error*: the suggested code gets the memory overflows. Figure 16 shows an example.
-
-![Fig16](./IMG/Fig16.png)
-
-<center>Fig. 16. Example of Memory Error, Problem: Arranging Coins</center>
-
-
-
-- *Runtime Exception*: the suggested code exceeds the maximum recursion depth during its execution. Figure 17 shows an example.
-
-![Fig17](./IMG/Fig17.png)
-
-<center>Fig. 17. Example of Runtime Exception, Problem: Check If Point Is Reachable</center>
-
-
-
-#### 2.4.2 Result
-
-***Wrong Answer***. we first analyze the reasons why the code suggestions get the *Wrong Answer* status. From the experiment, we have found that most of these statuses are caused by wrong outputs. In this case, the suggested code can run normally without any errors, but it cannot pass some test cases due to its outputs cannot match the expected outputs. We denote such cases as *regular cases* in Table 3. However, according to our observation, some code suggestions exhibit *code abnormalities* that are defined above. So we summarize these types in Table 3.
-
-<center>Table3</center>
-
-<center>Statistics of Wrong Answer Status</center>
-
-
-
-![Table4](./IMG/Table3.png)
-
-For the ***Compile Error*** (C and Java) and ***Runtime Error*** (JavaScript and Python), we also examine the code fragments and summarized the observations in Table 4:
-
-<center>Table 4</center>
-
-<center>The Reasons for Compile Error and Runtime Error</center>
-
-![Table3](./IMG/Table4.png)
-
-
-
-
-
-
-
-## 3.Structure of the Project
-
-```powershell
-├── Tool                  :tools that generate code files and analysis submission result
-├── IMG                   :image
-├── Output                :code suggestion files                
-├── RQ1_TO_RQ3            :result of RQ1~RQ3
-├── RQ4                   :result of RQ4
-├──README.md              :guidance of our experiment
-└──SubmissionResult.xlsx  :result of our experiment
-```
-
-
-
-
-
+![FIO](./Figure/ErrorSample/IterationError.png)
