@@ -1,16 +1,7 @@
 /**https://leetcode.com/problems/all-elements-in-two-binary-search-trees/ */
 //Given two binary search trees root1 and root2, return a list containing all the integers from both trees sorted in ascending order.
-// 
-//Example 1:
-//Input: root1 = [2,1,4], root2 = [1,0,3]
-//Output: [0,1,1,2,3,4]
-//Example 2:
-//Input: root1 = [1,null,8], root2 = [8,1]
-//Output: [1,1,8,8]
-// 
-//Constraints:
-//	The number of nodes in each tree is in the range [0, 5000].
-//	-105 <= Node.val <= 105
+
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -26,8 +17,35 @@
  *     }
  * }
  */
-class Solution {
+class AllElementsInTwoBinarySearchTrees {
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        TreeNode node1 = root1;
+        TreeNode node2 = root2;
+        while(node1 != null || !stack1.isEmpty() || node2 != null || !stack2.isEmpty()){
+            while(node1 != null){
+                stack1.push(node1);
+                node1 = node1.left;
+            }
+            while(node2 != null){
+                stack2.push(node2);
+                node2 = node2.left;
+            }
+            if(stack2.isEmpty() || !stack1.isEmpty() && stack1.peek().val <= stack2.peek().val){
+                node1 = stack1.pop();
+                res.add(node1.val);
+                node1 = node1.right;
+            }else{
+                node2 = stack2.pop();
+                res.add(node2.val);
+                node2 = node2.right;
+            }
+        }
+        return res;
         
     }
 }
+
+    

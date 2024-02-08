@@ -1,20 +1,34 @@
 /**https://leetcode.com/problems/remove-duplicate-letters/ */
 //Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
-// 
-//Example 1:
-//Input: s = "bcabc"
-//Output: "abc"
-//Example 2:
-//Input: s = "cbacdcbc"
-//Output: "acdb"
-// 
-//Constraints:
-//	1 <= s.length <= 104
-//	s consists of lowercase English letters.
-// 
-//Note: This question is the same as 1081: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
-class Solution {
+
+
+class RemoveDuplicateLetters {
     public String removeDuplicateLetters(String s) {
+        int[] map = new int[26];
+        boolean[] visited = new boolean[26];
+        for(char c : s.toCharArray()){
+            map[c - 'a']++;
+        }
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()){
+            map[c - 'a']--;
+            if(visited[c - 'a']){
+                continue;
+            }
+            while(!stack.isEmpty() && stack.peek() > c && map[stack.peek() - 'a'] > 0){
+                visited[stack.pop() - 'a'] = false;
+            }
+            stack.push(c);
+            visited[c - 'a'] = true;
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.append(stack.pop());
+        }
+        return sb.reverse().toString();
+        
         
     }
 }
+
+    

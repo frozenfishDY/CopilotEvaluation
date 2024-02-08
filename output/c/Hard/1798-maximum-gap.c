@@ -1,19 +1,40 @@
 /**https://leetcode.com/problems/maximum-gap/ */
 //Given an integer array nums, return the maximum difference between two successive elements in its sorted form. If the array contains less than two elements, return 0.
 //You must write an algorithm that runs in linear time and uses linear extra space.
-// 
-//Example 1:
-//Input: nums = [3,6,9,1]
-//Output: 3
-//Explanation: The sorted form of the array is [1,3,6,9], either (3,6) or (6,9) has the maximum difference 3.
-//Example 2:
-//Input: nums = [10]
-//Output: 0
-//Explanation: The array contains less than 2 elements, therefore return 0.
-// 
-//Constraints:
-//	1 <= nums.length <= 105
-//	0 <= nums[i] <= 109
+
+
 int maximumGap(int* nums, int numsSize){
+    if(numsSize < 2) return 0;
+    int max = nums[0];
+    int min = nums[0];
+    for(int i = 1; i < numsSize; i++){
+        if(nums[i] > max) max = nums[i];
+        if(nums[i] < min) min = nums[i];
+    }
+    int bucketSize = (max - min) / numsSize + 1;
+    int bucketNum = (max - min) / bucketSize + 1;
+    int* bucketMin = (int*)malloc(sizeof(int) * bucketNum);
+    int* bucketMax = (int*)malloc(sizeof(int) * bucketNum);
+    for(int i = 0; i < bucketNum; i++){
+        bucketMin[i] = INT_MAX;
+        bucketMax[i] = INT_MIN;
+    }
+    for(int i = 0; i < numsSize; i++){
+        int index = (nums[i] - min) / bucketSize;
+        if(nums[i] < bucketMin[index]) bucketMin[index] = nums[i];
+        if(nums[i] > bucketMax[index]) bucketMax[index] = nums[i];
+    }
+    int maxGap = 0;
+    int prev = bucketMax[0];
+    for(int i = 1; i < bucketNum; i++){
+        if(bucketMin[i] == INT_MAX && bucketMax[i] == INT_MIN) continue;
+        if(bucketMin[i] - prev > maxGap) maxGap = bucketMin[i] - prev;
+        prev = bucketMax[i];
+    }
+    return maxGap;
+    
+
 
 }
+
+    

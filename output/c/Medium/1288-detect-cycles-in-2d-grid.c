@@ -3,24 +3,28 @@
 //A cycle is a path of length 4 or more in the grid that starts and ends at the same cell. From a given cell, you can move to one of the cells adjacent to it - in one of the four directions (up, down, left, or right), if it has the same value of the current cell.
 //Also, you cannot move to the cell that you visited in your last move. For example, the cycle (1, 1) -> (1, 2) -> (1, 1) is invalid because from (1, 2) we visited (1, 1) which was the last visited cell.
 //Return true if any cycle of the same value exists in grid, otherwise, return false.
-// 
-//Example 1:
-//Input: grid = [["a","a","a","a"],["a","b","b","a"],["a","b","b","a"],["a","a","a","a"]]
-//Output: true
-//Explanation: There are two valid cycles shown in different colors in the image below:
-//Example 2:
-//Input: grid = [["c","c","c","a"],["c","d","c","c"],["c","c","e","c"],["f","c","c","c"]]
-//Output: true
-//Explanation: There is only one valid cycle highlighted in the image below:
-//Example 3:
-//Input: grid = [["a","b","b"],["b","z","b"],["b","b","a"]]
-//Output: false
-// 
-//Constraints:
-//	m == grid.length
-//	n == grid[i].length
-//	1 <= m, n <= 500
-//	grid consists only of lowercase English letters.
+
+
 bool containsCycle(char** grid, int gridSize, int* gridColSize){
+    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int row = gridSize;
+    int col = gridColSize[0];
+    int* arr = (int*)malloc(sizeof(int) * row * col);
+    for(i = 0; i < row * col; i++){
+        arr[i] = 0;
+    }
+    for(i = 0; i < row; i++){
+        for(j = 0; j < col; j++){
+            if(arr[i * col + j] == 0){
+                arr[i * col + j] = 1;
+                if(containsCycleHelper(grid, gridSize, gridColSize, i, j, i, j, arr)){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 
 }
+
+    

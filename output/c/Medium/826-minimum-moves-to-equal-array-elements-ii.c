@@ -2,21 +2,48 @@
 //Given an integer array nums of size n, return the minimum number of moves required to make all array elements equal.
 //In one move, you can increment or decrement an element of the array by 1.
 //Test cases are designed so that the answer will fit in a 32-bit integer.
-// 
-//Example 1:
-//Input: nums = [1,2,3]
-//Output: 2
-//Explanation:
-//Only two moves are needed (remember each move increments or decrements one element):
-//[1,2,3]  =>  [2,2,3]  =>  [2,2,2]
-//Example 2:
-//Input: nums = [1,10,2,9]
-//Output: 16
-// 
-//Constraints:
-//	n == nums.length
-//	1 <= nums.length <= 105
-//	-109 <= nums[i] <= 109
+
+
 int minMoves2(int* nums, int numsSize){
+    int* numsCount = (int*)malloc(sizeof(int) * 100000);
+    for(int i = 0; i < 100000; i++){
+        numsCount[i] = 0;
+    }
+    for(int i = 0; i < numsSize; i++){
+        numsCount[nums[i] + 50000]++;
+    }
+    int* numsCountSum = (int*)malloc(sizeof(int) * 100000);
+    numsCountSum[0] = numsCount[0];
+    for(int i = 1; i < 100000; i++){
+        numsCountSum[i] = numsCountSum[i - 1] + numsCount[i];
+    }
+    int* numsCountSumReverse = (int*)malloc(sizeof(int) * 100000);
+    numsCountSumReverse[99999] = numsCount[99999];
+    for(int i = 99998; i >= 0; i--){
+        numsCountSumReverse[i] = numsCountSumReverse[i + 1] + numsCount[i];
+    }
+    int min = numsCountSum[0];
+    for(int i = 1; i < 100000; i++){
+        if(numsCountSum[i] < min){
+            min = numsCountSum[i];
+        }
+    }
+    int minIndex = 0;
+    for(int i = 0; i < 100000; i++){
+        if(numsCountSum[i] == min){
+            minIndex = i;
+            break;
+        }
+    }
+    int count = 0;
+    for(int i = 0; i < minIndex; i++){
+        count += numsCount[i] * (minIndex - i);
+    }
+    for(int i = minIndex + 1; i < 100000; i++){
+        count += numsCount[i] * (i - minIndex);
+    }
+    return count;
 
 }
+
+    

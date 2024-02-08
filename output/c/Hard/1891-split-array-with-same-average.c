@@ -3,18 +3,36 @@
 //You should move each element of nums into one of the two arrays A and B such that A and B are non-empty, and average(A) == average(B).
 //Return true if it is possible to achieve that and false otherwise.
 //Note that for an array arr, average(arr) is the sum of all the elements of arr over the length of arr.
-// 
-//Example 1:
-//Input: nums = [1,2,3,4,5,6,7,8]
-//Output: true
-//Explanation: We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have an average of 4.5.
-//Example 2:
-//Input: nums = [3,1]
-//Output: false
-// 
-//Constraints:
-//	1 <= nums.length <= 30
-//	0 <= nums[i] <= 104
+
+
 bool splitArraySameAverage(int* nums, int numsSize){
+    int i, j, k, l, m, n, p, q, r, s, t, u, v, w, x, y, z;
+    int sum = 0;
+    for(i = 0; i < numsSize; i++){
+        sum += nums[i];
+    }
+    int** dp = (int**)malloc(sizeof(int*) * (numsSize + 1));
+    for(i = 0; i <= numsSize; i++){
+        dp[i] = (int*)malloc(sizeof(int) * (sum + 1));
+        for(j = 0; j <= sum; j++){
+            dp[i][j] = 0;
+        }
+    }
+    dp[0][0] = 1;
+    for(i = 0; i < numsSize; i++){
+        for(j = sum; j >= nums[i]; j--){
+            for(k = numsSize; k >= 1; k--){
+                dp[k][j] = dp[k][j] || dp[k - 1][j - nums[i]];
+            }
+        }
+    }
+    for(i = 1; i < numsSize; i++){
+        if(sum * i % numsSize == 0 && dp[i][sum * i / numsSize]){
+            return true;
+        }
+    }
+    return false;
 
 }
+
+    

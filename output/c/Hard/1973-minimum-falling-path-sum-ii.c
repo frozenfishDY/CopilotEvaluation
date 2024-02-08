@@ -1,24 +1,57 @@
 /**https://leetcode.com/problems/minimum-falling-path-sum-ii/ */
 //Given an n x n integer matrix grid, return the minimum sum of a falling path with non-zero shifts.
 //A falling path with non-zero shifts is a choice of exactly one element from each row of grid such that no two elements chosen in adjacent rows are in the same column.
-// 
-//Example 1:
-//Input: grid = [[1,2,3],[4,5,6],[7,8,9]]
-//Output: 13
-//Explanation: 
-//The possible falling paths are:
-//[1,5,9], [1,5,7], [1,6,7], [1,6,8],
-//[2,4,8], [2,4,9], [2,6,7], [2,6,8],
-//[3,4,8], [3,4,9], [3,5,7], [3,5,9]
-//The falling path with the smallest sum is [1,5,7], so the answer is 13.
-//Example 2:
-//Input: grid = [[7]]
-//Output: 7
-// 
-//Constraints:
-//	n == grid.length == grid[i].length
-//	1 <= n <= 200
-//	-99 <= grid[i][j] <= 99
+
+
 int minFallingPathSum(int** grid, int gridSize, int* gridColSize){
+    int i,j;
+    int* arr = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*gridColSize[0]);
+    for(i=0;i<gridColSize[0];i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*gridColSize[0]);
+    for(i=0;i<gridColSize[0];i++){
+        arr4[i] = 0;
+    }
+    int ans = 0;
+    int flag = 0;
+    while(flag==0){
+        flag = 1;
+        for(i=0;i<gridSize;i++){
+            if(arr[i]<gridColSize[0]){
+                flag = 0;
+                break;
+            }
+        }
+        if(flag==1){
+            break;
+        }
+        for(i=0;i<gridSize;i++){
+            if(arr[i]<gridColSize[0]){
+                arr[i]++;
+                arr2[i]++;
+                break;
+            }
+        }
+        for(i=0;i<gridColSize[0];i++){
+            if(arr3[i]<gridSize){
+                arr3[i]++;
+                arr4[i]++;
+                break;
+            }
+        }
+        ans++;
+    }
+    return ans;
 
 }
+
+    

@@ -4,24 +4,11 @@
 //For example, if there are two nodes X and Y in the original list, where X.random --> Y, then for the corresponding two nodes x and y in the copied list, x.random --> y.
 //Return the head of the copied linked list.
 //The linked list is represented in the input/output as a list of n nodes. Each node is represented as a pair of [val, random_index] where:
-//	val: an integer representing Node.val
-//	random_index: the index of the node (range from 0 to n-1) that the random pointer points to, or null if it does not point to any node.
+//val: an integer representing Node.val
+//random_index: the index of the node (range from 0 to n-1) that the random pointer points to, or null if it does not point to any node.
 //Your code will only be given the head of the original linked list.
-// 
-//Example 1:
-//Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
-//Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
-//Example 2:
-//Input: head = [[1,1],[2,1]]
-//Output: [[1,1],[2,1]]
-//Example 3:
-//Input: head = [[3,null],[3,0],[3,null]]
-//Output: [[3,null],[3,0],[3,null]]
-// 
-//Constraints:
-//	0 <= n <= 1000
-//	-104 <= Node.val <= 104
-//	Node.random is null or is pointing to some node in the linked list.
+
+
 /**
  * Definition for a Node.
  * struct Node {
@@ -32,5 +19,37 @@
  */
 
 struct Node* copyRandomList(struct Node* head) {
+    if(head == NULL){
+        return NULL;
+    }
+    struct Node* temp = head;
+    while(temp != NULL){
+        struct Node* temp1 = malloc(sizeof(struct Node));
+        temp1->val = temp->val;
+        temp1->next = temp->next;
+        temp->next = temp1;
+        temp = temp->next->next;
+    }
+    temp = head;
+    while(temp != NULL){
+        if(temp->random != NULL){
+            temp->next->random = temp->random->next;
+        }
+        temp = temp->next->next;
+    }
+    temp = head;
+    struct Node* temp2 = head->next;
+    struct Node* temp3 = head->next;
+    while(temp != NULL){
+        temp->next = temp->next->next;
+        if(temp3->next != NULL){
+            temp3->next = temp3->next->next;
+        }
+        temp = temp->next;
+        temp3 = temp3->next;
+    }
+    return temp2;
 	
 }
+
+    

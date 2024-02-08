@@ -1,20 +1,39 @@
 /**https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/ */
 //Given a m x n matrix mat and an integer threshold, return the maximum side-length of a square with a sum less than or equal to threshold or return 0 if there is no such square.
-// 
-//Example 1:
-//Input: mat = [[1,1,3,2,4,3,2],[1,1,3,2,4,3,2],[1,1,3,2,4,3,2]], threshold = 4
-//Output: 2
-//Explanation: The maximum side length of square with sum less than 4 is 2 as shown.
-//Example 2:
-//Input: mat = [[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2]], threshold = 1
-//Output: 0
-// 
-//Constraints:
-//	m == mat.length
-//	n == mat[i].length
-//	1 <= m, n <= 300
-//	0 <= mat[i][j] <= 104
-//	0 <= threshold <= 105
+
+
 int maxSideLength(int** mat, int matSize, int* matColSize, int threshold){
+    int result = 0;
+    int** sum = (int**)malloc(sizeof(int*) * matSize);
+    for(int i = 0; i < matSize; i++){
+        sum[i] = (int*)malloc(sizeof(int) * matColSize[i]);
+        sum[i][0] = mat[i][0];
+        for(int j = 1; j < matColSize[i]; j++){
+            sum[i][j] = sum[i][j - 1] + mat[i][j];
+        }
+    }
+    for(int i = 0; i < matSize; i++){
+        for(int j = 0; j < matColSize[i]; j++){
+            int temp = 0;
+            int k = 0;
+            while(i + k < matSize && j + k < matColSize[i]){
+                temp += sum[i + k][j + k];
+                if(j > 0){
+                    temp -= sum[i + k][j - 1];
+                }
+                if(temp <= threshold){
+                    if(k + 1 > result){
+                        result = k + 1;
+                    }
+                }else{
+                    break;
+                }
+                k++;
+            }
+        }
+    }
+    return result;
 
 }
+
+    

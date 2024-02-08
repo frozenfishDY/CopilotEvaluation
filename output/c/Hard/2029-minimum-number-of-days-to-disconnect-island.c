@@ -3,22 +3,63 @@
 //The grid is said to be connected if we have exactly one island, otherwise is said disconnected.
 //In one day, we are allowed to change any single land cell (1) into a water cell (0).
 //Return the minimum number of days to disconnect the grid.
-// 
-//Example 1:
-//Input: grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]
-//Output: 2
-//Explanation: We need at least 2 days to get a disconnected grid.
-//Change land grid[1][1] and grid[0][2] to water and get 2 disconnected island.
-//Example 2:
-//Input: grid = [[1,1]]
-//Output: 2
-//Explanation: Grid of full water is also disconnected ([[1,1]] -> [[0,0]]), 0 islands.
-// 
-//Constraints:
-//	m == grid.length
-//	n == grid[i].length
-//	1 <= m, n <= 30
-//	grid[i][j] is either 0 or 1.
+
+
 int minDays(int** grid, int gridSize, int* gridColSize){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*gridSize);
+    for(i=0;i<gridSize;i++){
+        arr13[i] = 0;
+    }
 
 }
+
+    

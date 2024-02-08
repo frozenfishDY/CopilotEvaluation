@@ -1,35 +1,24 @@
 /**https://leetcode.com/problems/binary-subarrays-with-sum/ */
-//Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal._x000D_
-//_x000D_
-//A subarray is a contiguous part of the array._x000D_
-//_x000D_
-// _x000D_
-//Example 1:_x000D_
-//_x000D_
-//_x000D_
-//Input: nums = [1,0,1,0,1], goal = 2_x000D_
-//Output: 4_x000D_
-//Explanation: The 4 subarrays are bolded and underlined below:_x000D_
-//[1,0,1,0,1]_x000D_
-//[1,0,1,0,1]_x000D_
-//[1,0,1,0,1]_x000D_
-//[1,0,1,0,1]_x000D_
-//_x000D_
-//_x000D_
-//Example 2:_x000D_
-//_x000D_
-//_x000D_
-//Input: nums = [0,0,0,0,0], goal = 0_x000D_
-//Output: 15_x000D_
-//_x000D_
-//_x000D_
-// _x000D_
-//Constraints:_x000D_
-//_x000D_
-//_x000D_
-//	1 <= nums.length <= 3 * 104_x000D_
-//	nums[i] is either 0 or 1._x000D_
-//	0 <= goal <= nums.length_x000D_
-int numSubarraysWithSum(int* nums, int numsSize, int goal){_x000D_
-_x000D_
+//Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+//A subarray is a contiguous part of the array.
+
+
+int numSubarraysWithSum(int* nums, int numsSize, int goal){
+    int* sum = (int*)malloc(sizeof(int) * (numsSize + 1));
+    sum[0] = 0;
+    for(int i = 1; i <= numsSize; i++){
+        sum[i] = sum[i - 1] + nums[i - 1];
+    }
+    int count = 0;
+    for(int i = 0; i < numsSize; i++){
+        for(int j = i + 1; j <= numsSize; j++){
+            if(sum[j] - sum[i] == goal){
+                count++;
+            }
+        }
+    }
+    return count;
+
 }
+
+    

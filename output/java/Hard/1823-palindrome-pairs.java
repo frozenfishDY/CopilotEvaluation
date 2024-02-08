@@ -1,31 +1,50 @@
 /**https://leetcode.com/problems/palindrome-pairs/ */
 //You are given a 0-indexed array of unique strings words.
 //A palindrome pair is a pair of integers (i, j) such that:
-//	0 <= i, j < words.length,
-//	i != j, and
-//	words[i] + words[j] (the concatenation of the two strings) is a palindrome.
+//0 <= i, j < words.length,
+//i != j, and
+//words[i] + words[j] (the concatenation of the two strings) is a palindrome.
 //Return an array of all the palindrome pairs of words.
-//You must write an algorithm with O(sum of words[i].length) runtime complexity.
-// 
-//Example 1:
-//Input: words = ["abcd","dcba","lls","s","sssll"]
-//Output: [[0,1],[1,0],[3,2],[2,4]]
-//Explanation: The palindromes are ["abcddcba","dcbaabcd","slls","llssssll"]
-//Example 2:
-//Input: words = ["bat","tab","cat"]
-//Output: [[0,1],[1,0]]
-//Explanation: The palindromes are ["battab","tabbat"]
-//Example 3:
-//Input: words = ["a",""]
-//Output: [[0,1],[1,0]]
-//Explanation: The palindromes are ["a","a"]
-// 
-//Constraints:
-//	1 <= words.length <= 5000
-//	0 <= words[i].length <= 300
-//	words[i] consists of lowercase English letters.
-class Solution {
+
+
+class PalindromePairs {
     public List<List<Integer>> palindromePairs(String[] words) {
+        int n = words.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(words[i], i);
+        }
+        for (int i = 0; i < n; i++) {
+            String word = words[i];
+            int m = word.length();
+            for (int j = 0; j <= m; j++) {
+                String left = word.substring(0, j);
+                String right = word.substring(j);
+                if (isPalindrome(left)) {
+                    String rightRev = new StringBuilder(right).reverse().toString();
+                    if (map.containsKey(rightRev) && map.get(rightRev) != i) {
+                        List<Integer> list = new ArrayList<>();
+                        list.add(map.get(rightRev));
+                        list.add(i);
+                        ans.add(list);
+                    }
+                }
+                if (isPalindrome(right)) {
+                    String leftRev = new StringBuilder(left).reverse().toString();
+                    if (map.containsKey(leftRev) && map.get(leftRev) != i && right.length() != 0) {
+                        List<Integer> list = new ArrayList<>();
+                        list.add(i);
+                        list.add(map.get(leftRev));
+                        ans.add(list);
+                    }
+                }
+            }
+        }
+        return ans;
+        
         
     }
 }
+     
+    

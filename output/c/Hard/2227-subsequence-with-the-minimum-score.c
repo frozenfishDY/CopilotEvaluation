@@ -2,28 +2,36 @@
 //You are given two strings s and t.
 //You are allowed to remove any number of characters from the string t.
 //The score of the string is 0 if no characters are removed from the string t, otherwise:
-//	Let left be the minimum index among all removed characters.
-//	Let right be the maximum index among all removed characters.
+//Let left be the minimum index among all removed characters.
+//Let right be the maximum index among all removed characters.
 //Then the score of the string is right - left + 1.
-//Return the minimum possible score to make t a subsequence of s.
+//Return the minimum possible score to make t a subsequence of s.
 //A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
-// 
-//Example 1:
-//Input: s = "abacaba", t = "bzaa"
-//Output: 1
-//Explanation: In this example, we remove the character "z" at index 1 (0-indexed).
-//The string t becomes "baa" which is a subsequence of the string "abacaba" and the score is 1 - 1 + 1 = 1.
-//It can be proven that 1 is the minimum score that we can achieve.
-//Example 2:
-//Input: s = "cde", t = "xyz"
-//Output: 3
-//Explanation: In this example, we remove characters "x", "y" and "z" at indices 0, 1, and 2 (0-indexed).
-//The string t becomes "" which is a subsequence of the string "cde" and the score is 2 - 0 + 1 = 3.
-//It can be proven that 3 is the minimum score that we can achieve.
-// 
-//Constraints:
-//	1 <= s.length, t.length <= 105
-//	s and t consist of only lowercase English letters.
+
+
 int minimumScore(char * s, char * t){
+    int i, j, k, l, m, n, o, p, q, r, a, b, c, d, e, f, g, h, w, x, y, z;
+    int *s = (int *)malloc(sizeof(int) * (n + 1));
+    int *t = (int *)malloc(sizeof(int) * (n + 1));
+    int *a = (int *)malloc(sizeof(int) * n);
+    for (i = 0; i < n; i++) {
+        a[i] = i + 1;
+    }
+    for (i = 0; i < n; i++) {
+        f = 1;
+        for (j = 1; j <= n - i - 1; j++) {
+            f *= j;
+        }
+        t = (k - 1) / f;
+        s[i] = a[t] + '0';
+        for (j = t; j < n - i - 1; j++) {
+            a[j] = a[j + 1];
+        }
+        k -= t * f;
+    }
+    s[n] = '\0';
+    return s;
 
 }
+
+    

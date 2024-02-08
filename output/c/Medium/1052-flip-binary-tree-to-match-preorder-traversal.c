@@ -3,27 +3,8 @@
 //Any node in the binary tree can be flipped by swapping its left and right subtrees. For example, flipping node 1 will have the following effect:
 //Flip the smallest number of nodes so that the pre-order traversal of the tree matches voyage.
 //Return a list of the values of all flipped nodes. You may return the answer in any order. If it is impossible to flip the nodes in the tree to make the pre-order traversal match voyage, return the list [-1].
-// 
-//Example 1:
-//Input: root = [1,2], voyage = [2,1]
-//Output: [-1]
-//Explanation: It is impossible to flip the nodes such that the pre-order traversal matches voyage.
-//Example 2:
-//Input: root = [1,2,3], voyage = [1,3,2]
-//Output: [1]
-//Explanation: Flipping node 1 swaps nodes 2 and 3, so the pre-order traversal matches voyage.
-//Example 3:
-//Input: root = [1,2,3], voyage = [1,2,3]
-//Output: []
-//Explanation: The tree's pre-order traversal already matches voyage, so no nodes need to be flipped.
-// 
-//Constraints:
-//	The number of nodes in the tree is n.
-//	n == voyage.length
-//	1 <= n <= 100
-//	1 <= Node.val, voyage[i] <= n
-//	All the values in the tree are unique.
-//	All the values in voyage are unique.
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -36,5 +17,37 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* flipMatchVoyage(struct TreeNode* root, int* voyage, int voyageSize, int* returnSize){
+    int* result = (int*)malloc(sizeof(int) * 1000);
+    *returnSize = 0;
+    int i = 0;
+    struct TreeNode* stack[1000];
+    int stackSize = 0;
+    struct TreeNode* node = root;
+    while(node != NULL || stackSize > 0){
+        if(node != NULL){
+            if(node->val != voyage[i]){
+                result[0] = -1;
+                *returnSize = 1;
+                return result;
+            }
+            i++;
+            if(node->left != NULL && node->left->val != voyage[i]){
+                result[*returnSize] = node->val;
+                (*returnSize)++;
+                struct TreeNode* temp = node->left;
+                node->left = node->right;
+                node->right = temp;
+            }
+            stack[stackSize] = node;
+            stackSize++;
+            node = node->left;
+        }else{
+            stackSize--;
+            node = stack[stackSize]->right;
+        }
+    }
+    return result;
 
 }
+
+    

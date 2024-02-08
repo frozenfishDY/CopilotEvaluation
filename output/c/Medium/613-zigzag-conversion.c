@@ -6,26 +6,71 @@
 //And then read line by line: "PAHNAPLSIIGYIR"
 //Write the code that will take a string and make this conversion given a number of rows:
 //string convert(string s, int numRows);
-// 
-//Example 1:
-//Input: s = "PAYPALISHIRING", numRows = 3
-//Output: "PAHNAPLSIIGYIR"
-//Example 2:
-//Input: s = "PAYPALISHIRING", numRows = 4
-//Output: "PINALSIGYAHRPI"
-//Explanation:
-//P     I    N
-//A   L S  I G
-//Y A   H R
-//P     I
-//Example 3:
-//Input: s = "A", numRows = 1
-//Output: "A"
-// 
-//Constraints:
-//	1 <= s.length <= 1000
-//	s consists of English letters (lower-case and upper-case), ',' and '.'.
-//	1 <= numRows <= 1000
+
+
 char * convert(char * s, int numRows){
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int len = strlen(s);
+    int flag = 0;
+    int count = 0;
+    int max = 0;
+    char* result = NULL;
+    if(numRows == 1){
+        return s;
+    }
+    for(i = 0; i < numRows; i++){
+        for(j = i; j < len; j += (2 * numRows - 2)){
+            if(i == 0 || i == numRows - 1){
+                count++;
+            }
+            else{
+                if(flag == 0){
+                    count++;
+                    flag = 1;
+                }
+                else{
+                    if(j + (numRows - i - 1) * 2 < len){
+                        count += 2;
+                    }
+                    else{
+                        count++;
+                    }
+                    flag = 0;
+                }
+            }
+        }
+        if(count > max){
+            max = count;
+        }
+        count = 0;
+        flag = 0;
+    }
+    result = (char*)malloc(sizeof(char) * (max + 1));
+    for(i = 0; i < numRows; i++){
+        for(j = i; j < len; j += (2 * numRows - 2)){
+            result[k++] = s[j];
+            if(i == 0 || i == numRows - 1){
+                continue;
+            }
+            else{
+                if(flag == 0){
+                    flag = 1;
+                }
+                else{
+                    if(j + (numRows - i - 1) * 2 < len){
+                        result[k++] = s[j + (numRows - i - 1) * 2];
+                    }
+                    flag = 0;
+                }
+            }
+        }
+        flag = 0;
+    }
+    result[k] = '\0';
+    return result;
 
 }
+
+    

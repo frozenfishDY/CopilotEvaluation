@@ -1,18 +1,7 @@
 /**https://leetcode.com/problems/average-of-levels-in-binary-tree/ */
 //Given the root of a binary tree, return the average value of the nodes on each level in the form of an array. Answers within 10-5 of the actual answer will be accepted.
-// 
-//Example 1:
-//Input: root = [3,9,20,null,null,15,7]
-//Output: [3.00000,14.50000,11.00000]
-//Explanation: The average value of nodes on level 0 is 3, on level 1 is 14.5, and on level 2 is 11.
-//Hence return [3, 14.5, 11].
-//Example 2:
-//Input: root = [3,9,20,15,7]
-//Output: [3.00000,14.50000,11.00000]
-// 
-//Constraints:
-//	The number of nodes in the tree is in the range [1, 104].
-//	-231 <= Node.val <= 231 - 1
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -25,5 +14,42 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 double* averageOfLevels(struct TreeNode* root, int* returnSize){
+    double *result = (double *)malloc(sizeof(double) * 100);
+    int *count = (int *)malloc(sizeof(int) * 100);
+    int index = 0;
+    struct TreeNode *p = root;
+    struct TreeNode *pre = NULL;
+    while(p != NULL){
+        if(p->left == NULL && p->right == NULL){
+            result[index] += p->val;
+            count[index]++;
+            p = p->left;
+        }else{
+            pre = p->right;
+            while(pre->left != NULL && pre->left != p){
+                pre = pre->left;
+            }
+            if(pre->left == NULL){
+                pre->left = p;
+                result[index] += p->val;
+                count[index]++;
+                p = p->left;
+            }else{
+                pre->left = NULL;
+                p = p->right;
+            }
+        }
+        if(p == NULL){
+            index++;
+            p = root;
+        }
+    }
+    *returnSize = index;
+    for(int i = 0; i < index; i++){
+        result[i] /= count[i];
+    }
+    return result;
 
 }
+
+    

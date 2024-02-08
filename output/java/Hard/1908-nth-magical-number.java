@@ -1,19 +1,25 @@
 /**https://leetcode.com/problems/nth-magical-number/ */
 //A positive integer is magical if it is divisible by either a or b.
-//Given the three integers n, a, and b, return the nth magical number. Since the answer may be very large, return it modulo 109 + 7.
-// 
-//Example 1:
-//Input: n = 1, a = 2, b = 3
-//Output: 2
-//Example 2:
-//Input: n = 4, a = 2, b = 3
-//Output: 6
-// 
-//Constraints:
-//	1 <= n <= 109
-//	2 <= a, b <= 4 * 104
-class Solution {
+//Given the three integers n, a, and b, return the nth magical number. Since the answer may be very large, return it modulo 10^9 + 7.
+
+
+class NthMagicalNumber {
     public int nthMagicalNumber(int n, int a, int b) {
+        int mod = 1000000007;
+        long lcm = (long) a * b / gcd(a, b);
+        long lo = 0, hi = (long) 1e15;
+        while (lo < hi) {
+            long mid = lo + hi >> 1;
+            if (mid / a + mid / b - mid / lcm < n) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        return (int) (lo % mod);
+        
         
     }
 }
+     
+    

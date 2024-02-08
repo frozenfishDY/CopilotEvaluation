@@ -1,21 +1,56 @@
 /**https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/ */
 //Given a rectangle of size n x m, return the minimum number of integer-sided squares that tile the rectangle.
-// 
-//Example 1:
-//Input: n = 2, m = 3
-//Output: 3
-//Explanation: 3 squares are necessary to cover the rectangle.
-//2 (squares of 1x1)
-//1 (square of 2x2)
-//Example 2:
-//Input: n = 5, m = 8
-//Output: 5
-//Example 3:
-//Input: n = 11, m = 13
-//Output: 6
-// 
-//Constraints:
-//	1 <= n, m <= 13
+
+
 int tilingRectangle(int n, int m){
+    int i,j;
+    int* arr = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*m);
+    for(i=0;i<m;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*m);
+    for(i=0;i<m;i++){
+        arr4[i] = 0;
+    }
+    int ans = 0;
+    int flag = 0;
+    while(flag==0){
+        flag = 1;
+        for(i=0;i<n;i++){
+            if(arr[i]<m){
+                flag = 0;
+                break;
+            }
+        }
+        if(flag==1){
+            break;
+        }
+        for(i=0;i<n;i++){
+            if(arr[i]<m){
+                arr[i]++;
+                arr2[i]++;
+                break;
+            }
+        }
+        for(i=0;i<m;i++){
+            if(arr3[i]<n){
+                arr3[i]++;
+                arr4[i]++;
+                break;
+            }
+        }
+        ans++;
+    }
+    return ans;
 
 }
+
+    

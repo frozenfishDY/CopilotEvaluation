@@ -3,27 +3,63 @@
 //In one operation you can choose any subarray from initial and increment each value by one.
 //Return the minimum number of operations to form a target array from initial.
 //The test cases are generated so that the answer fits in a 32-bit integer.
-// 
-//Example 1:
-//Input: target = [1,2,3,2,1]
-//Output: 3
-//Explanation: We need at least 3 operations to form the target array from the initial array.
-//[0,0,0,0,0] increment 1 from index 0 to 4 (inclusive).
-//[1,1,1,1,1] increment 1 from index 1 to 3 (inclusive).
-//[1,2,2,2,1] increment 1 at index 2.
-//[1,2,3,2,1] target array is formed.
-//Example 2:
-//Input: target = [3,1,1,2]
-//Output: 4
-//Explanation: [0,0,0,0] -> [1,1,1,1] -> [1,1,1,2] -> [2,1,1,2] -> [3,1,1,2]
-//Example 3:
-//Input: target = [3,1,5,4,2]
-//Output: 7
-//Explanation: [0,0,0,0,0] -> [1,1,1,1,1] -> [2,1,1,1,1] -> [3,1,1,1,1] -> [3,1,2,2,2] -> [3,1,3,3,2] -> [3,1,4,4,2] -> [3,1,5,4,2].
-// 
-//Constraints:
-//	1 <= target.length <= 105
-//	1 <= target[i] <= 105
+
+
 int minNumberOperations(int* target, int targetSize){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*targetSize);
+    for(i=0;i<targetSize;i++){
+        arr13[i] = 0;
+    }
 
 }
+
+    

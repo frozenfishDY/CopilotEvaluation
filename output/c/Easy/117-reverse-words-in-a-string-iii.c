@@ -1,19 +1,33 @@
 /**https://leetcode.com/problems/reverse-words-in-a-string-iii/ */
 //Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
-// 
-//Example 1:
-//Input: s = "Let's take LeetCode contest"
-//Output: "s'teL ekat edoCteeL tsetnoc"
-//Example 2:
-//Input: s = "God Ding"
-//Output: "doG gniD"
-// 
-//Constraints:
-//	1 <= s.length <= 5 * 104
-//	s contains printable ASCII characters.
-//	s does not contain any leading or trailing spaces.
-//	There is at least one word in s.
-//	All the words in s are separated by a single space.
+
+
 char * reverseWords(char * s){
+    int len = strlen(s);
+    int i = 0;
+    int j = 0;
+    int temp = 0;
+    while(i < len){
+        if(s[i] == ' '){
+            i++;
+            continue;
+        }
+        j = i;
+        while(j < len && s[j] != ' '){
+            j++;
+        }
+        j--;
+        while(i < j){
+            temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+        i = j + 1;
+    }
+    return s;
 
 }
+
+    

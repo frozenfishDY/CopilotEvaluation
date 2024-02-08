@@ -3,23 +3,42 @@
 //We may rotate the ith domino, so that tops[i] and bottoms[i] swap values.
 //Return the minimum number of rotations so that all the values in tops are the same, or all the values in bottoms are the same.
 //If it cannot be done, return -1.
-// 
-//Example 1:
-//Input: tops = [2,1,2,4,2,2], bottoms = [5,2,6,2,3,2]
-//Output: 2
-//Explanation: 
-//The first figure represents the dominoes as given by tops and bottoms: before we do any rotations.
-//If we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the second figure.
-//Example 2:
-//Input: tops = [3,5,1,2,3], bottoms = [3,6,3,3,4]
-//Output: -1
-//Explanation: 
-//In this case, it is not possible to rotate the dominoes to make one row of values equal.
-// 
-//Constraints:
-//	2 <= tops.length <= 2 * 104
-//	bottoms.length == tops.length
-//	1 <= tops[i], bottoms[i] <= 6
+
+
 int minDominoRotations(int* tops, int topsSize, int* bottoms, int bottomsSize){
+    int* hash = (int*)malloc(sizeof(int) * 7);
+    for(int i = 0; i < 7; i++){
+        hash[i] = 0;
+    }
+    for(int i = 0; i < topsSize; i++){
+        hash[tops[i]]++;
+    }
+    for(int i = 0; i < bottomsSize; i++){
+        hash[bottoms[i]]++;
+    }
+    int max = -1;
+    int maxIndex = -1;
+    for(int i = 0; i < 7; i++){
+        if(hash[i] >= max){
+            max = hash[i];
+            maxIndex = i;
+        }
+    }
+    int topCount = 0;
+    int bottomCount = 0;
+    for(int i = 0; i < topsSize; i++){
+        if(tops[i] != maxIndex && bottoms[i] != maxIndex){
+            return -1;
+        }
+        if(tops[i] != maxIndex){
+            topCount++;
+        }
+        if(bottoms[i] != maxIndex){
+            bottomCount++;
+        }
+    }
+    return topCount < bottomCount ? topCount : bottomCount;
 
 }
+
+    

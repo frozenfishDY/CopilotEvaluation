@@ -2,26 +2,31 @@
 //You are given a 2D matrix of size m x n, consisting of non-negative integers. You are also given an integer k.
 //The value of coordinate (a, b) of the matrix is the XOR of all matrix[i][j] where 0 <= i <= a < m and 0 <= j <= b < n (0-indexed).
 //Find the kth largest value (1-indexed) of all the coordinates of matrix.
-// 
-//Example 1:
-//Input: matrix = [[5,2],[1,6]], k = 1
-//Output: 7
-//Explanation: The value of coordinate (0,1) is 5 XOR 2 = 7, which is the largest value.
-//Example 2:
-//Input: matrix = [[5,2],[1,6]], k = 2
-//Output: 5
-//Explanation: The value of coordinate (0,0) is 5 = 5, which is the 2nd largest value.
-//Example 3:
-//Input: matrix = [[5,2],[1,6]], k = 3
-//Output: 4
-//Explanation: The value of coordinate (1,0) is 5 XOR 1 = 4, which is the 3rd largest value.
-// 
-//Constraints:
-//	m == matrix.length
-//	n == matrix[i].length
-//	1 <= m, n <= 1000
-//	0 <= matrix[i][j] <= 106
-//	1 <= k <= m * n
-int kthLargestValue(int** matrix, int matrixSize, int* matrixColSize, int k){
 
+
+int kthLargestValue(int** matrix, 
+int matrixSize, int* matrixColSize, int k){
+    int i, j, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int* arr = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr[i] = 0;}
+    int* arr2 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr2[i] = 0;}
+    int* arr3 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr3[i] = 0;}
+    int* arr4 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr4[i] = 0;}
+    int* arr5 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr5[i] = 0;}
+    int* arr6 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr6[i] = 0;}
+    int* arr7 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr7[i] = 0;}
+    int* arr8 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr8[i] = 0;}
+    int* arr9 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize [0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr9[i] = 0;}
+    int* arr10 = (int*)malloc(sizeof(int) * (matrixSize * matrixColSize[0]));
+    for(i = 0; i < (matrixSize * matrixColSize[0]); i++){arr10[i] = 0;}
 }
+
+    

@@ -1,29 +1,82 @@
 /**https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/ */
-//There are n items each belonging to zero or one of m groups where group[i] is the group that the i-th item belongs to and it's equal to -1 if the i-th item belongs to no group. The items and the groups are zero indexed. A group can have no item belonging to it.
+//There are n items each belonging to zero or one of m groups where group[i] is the group that the i-th item belongs to and it's equal to -1 if the i-th item belongs to no group. The items and the groups are zero indexed. A group can have no item belonging to it.
 //Return a sorted list of the items such that:
-//	The items that belong to the same group are next to each other in the sorted list.
-//	There are some relations between these items where beforeItems[i] is a list containing all the items that should come before the i-th item in the sorted array (to the left of the i-th item).
-//Return any solution if there is more than one solution and return an empty list if there is no solution.
-// 
-//Example 1:
-//Input: n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]
-//Output: [6,3,4,1,5,2,0,7]
-//Example 2:
-//Input: n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3],[],[4],[]]
-//Output: []
-//Explanation: This is the same as example 1 except that 4 needs to be before 6 in the sorted list.
-// 
-//Constraints:
-//	1 <= m <= n <= 3 * 104
-//	group.length == beforeItems.length == n
-//	-1 <= group[i] <= m - 1
-//	0 <= beforeItems[i].length <= n - 1
-//	0 <= beforeItems[i][j] <= n - 1
-//	i != beforeItems[i][j]
-//	beforeItems[i] does not contain duplicates elements.
+//The items that belong to the same group are next to each other in the sorted list.
+//There are some relations between these items where beforeItems[i] is a list containing all the items that should come before the i-th item in the sorted array (to the left of the i-th item).
+//Return any solution if there is more than one solution and return an empty list if there is no solution.
+
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* sortItems(int n, int m, int* group, int groupSize, int** beforeItems, int beforeItemsSize, int* beforeItemsColSize, int* returnSize){
+    int* ans = (int*)malloc(sizeof(int)*n);
+    *returnSize = n;
+    int i,j;
+    int** graph = (int**)malloc(sizeof(int*)*n);
+    for(i=0;i<n;i++){
+        graph[i] = (int*)malloc(sizeof(int)*n);
+        for(j=0;j<n;j++){
+            graph[i][j] = 0;
+        }
+    }
+    int** graph2 = (int**)malloc(sizeof(int*)*n);
+    for(i=0;i<n;i++){
+        graph2[i] = (int*)malloc(sizeof(int)*n);
+        for(j=0;j<n;j++){
+            graph2[i][j] = 0;
+        }
+    }
+    int* indegree = (int*)malloc(sizeof(int)*n);
+    int* indegree2 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        indegree[i] = 0;
+        indegree2[i] = 0;
+    }
+    for(i=0;i<n;i++){
+        for(j=0;j<beforeItemsColSize[i];j++){
+            graph[beforeItems[i][j]][i] = 1;
+            indegree[i]++;
+        }
+    }
+    for(i=0;i<n;i++){
+        for(j=0;j<beforeItemsColSize[i];j++){
+            if(group[beforeItems[i][j]] == group[i]){
+                graph2[beforeItems[i][j]][i] = 1;
+                indegree2[i]++;
+            }
+        }
+    }
+    int* visited = (int*)malloc(sizeof(int)*n);
+    int* visited2 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        visited[i] = 0;
+        visited2[i] = 0;
+    }
+    int* stack = (int*)malloc(sizeof(int)*n);
+    int* stack2 = (int*)malloc(sizeof(int)*n);
+    int top = -1;
+    int top2 = -1;
+    for(i=0;i<n;i++){
+        if(indegree[i] == 0){
+            stack[++top] = i;
+        }
+    }
+    for(i=0;i<n;i++){
+        if(indegree2[i] == 0){
+            stack2[++top2] = i;
+        }
+    }
+    int* group2 = ( int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        group2[i] = group[i];
+    }
+    int* group3 = ( int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        group3[i] = group[i];
+    }
+    int* group4 = ( int*)malloc(sizeof(int)*n);
 
 }
+
+    

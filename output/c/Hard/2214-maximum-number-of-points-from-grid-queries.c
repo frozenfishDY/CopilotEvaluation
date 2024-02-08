@@ -1,31 +1,73 @@
 /**https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ */
 //You are given an m x n integer matrix grid and an array queries of size k.
-//Find an array answer of size k such that for each integer queries[i] you start in the top left cell of the matrix and repeat the following process:
-//	If queries[i] is strictly greater than the value of the current cell that you are in, then you get one point if it is your first time visiting this cell, and you can move to any adjacent cell in all 4 directions: up, down, left, and right.
-//	Otherwise, you do not get any points, and you end this process.
+//Find an array answer of size k such that for each integer queres[i] you start in the top left cell of the matrix and repeat the following process:
+//    If queries[i] is strictly greater than the value of the current cell that you are in, then you get one point if it is your first time visiting this cell, and you can move to any adjacent cell in all 4 directions: up, down, left, and right.
+//    Otherwise, you do not get any points, and you end this process.
 //After the process, answer[i] is the maximum number of points you can get. Note that for each query you are allowed to visit the same cell multiple times.
 //Return the resulting array answer.
-// 
-//Example 1:
-//Input: grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]
-//Output: [5,8,1]
-//Explanation: The diagrams above show which cells we visit to get points for each query.
-//Example 2:
-//Input: grid = [[5,2,1],[1,1,2]], queries = [3]
-//Output: [0]
-//Explanation: We can not get any points because the value of the top left cell is already greater than or equal to 3.
-// 
-//Constraints:
-//	m == grid.length
-//	n == grid[i].length
-//	2 <= m, n <= 1000
-//	4 <= m * n <= 105
-//	k == queries.length
-//	1 <= k <= 104
-//	1 <= grid[i][j], queries[i] <= 106
-/**
+
+
+**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* maxPoints(int** grid, int gridSize, int* gridColSize, int* queries, int queriesSize, int* returnSize){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr13[i] = 0;
+    }
+    int* arr14 = (int*)malloc(sizeof(int)*26);
+    for(i=0;i<26;i++){
+        arr
 
 }
+
+    

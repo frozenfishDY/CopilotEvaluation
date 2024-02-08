@@ -3,36 +3,63 @@
 //Return the array ans of length n representing the unknown array. If multiple answers exist, return any of them.
 //An array sub is a subset of an array arr if sub can be obtained from arr by deleting some (possibly zero or all) elements of arr. The sum of the elements in sub is one possible subset sum of arr. The sum of an empty array is considered to be 0.
 //Note: Test cases are generated such that there will always be at least one correct answer.
-// 
-//Example 1:
-//Input: n = 3, sums = [-3,-2,-1,0,0,1,2,3]
-//Output: [1,2,-3]
-//Explanation: [1,2,-3] is able to achieve the given subset sums:
-//- []: sum is 0
-//- [1]: sum is 1
-//- [2]: sum is 2
-//- [1,2]: sum is 3
-//- [-3]: sum is -3
-//- [1,-3]: sum is -2
-//- [2,-3]: sum is -1
-//- [1,2,-3]: sum is 0
-//Note that any permutation of [1,2,-3] and also any permutation of [-1,-2,3] will also be accepted.
-//Example 2:
-//Input: n = 2, sums = [0,0,0,0]
-//Output: [0,0]
-//Explanation: The only correct answer is [0,0].
-//Example 3:
-//Input: n = 4, sums = [0,0,5,5,4,-1,4,9,9,-1,4,3,4,8,3,8]
-//Output: [0,-1,4,5]
-//Explanation: [0,-1,4,5] is able to achieve the given subset sums.
-// 
-//Constraints:
-//	1 <= n <= 15
-//	sums.length == 2n
-//	-104 <= sums[i] <= 104
+
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* recoverArray(int n, int* sums, int sumsSize, int* returnSize){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*sumsSize);
+    for(i=0;i<sumsSize;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*sums
 
 }
+
+    

@@ -4,29 +4,43 @@
 //The product of a path is defined as the product of all the values in the path.
 //Return the maximum number of trailing zeros in the product of a cornered path found in grid.
 //Note:
-//	Horizontal movement means moving in either the left or right direction.
-//	Vertical movement means moving in either the up or down direction.
-// 
-//Example 1:
-//Input: grid = [[23,17,15,3,20],[8,1,20,27,11],[9,4,6,2,21],[40,9,1,10,6],[22,7,4,5,3]]
-//Output: 3
-//Explanation: The grid on the left shows a valid cornered path.
-//It has a product of 15 * 20 * 6 * 1 * 10 = 18000 which has 3 trailing zeros.
-//It can be shown that this is the maximum trailing zeros in the product of a cornered path.
-//The grid in the middle is not a cornered path as it has more than one turn.
-//The grid on the right is not a cornered path as it requires a return to a previously visited cell.
-//Example 2:
-//Input: grid = [[4,3,2],[7,6,1],[8,8,8]]
-//Output: 0
-//Explanation: The grid is shown in the figure above.
-//There are no cornered paths in the grid that result in a product with a trailing zero.
-// 
-//Constraints:
-//	m == grid.length
-//	n == grid[i].length
-//	1 <= m, n <= 105
-//	1 <= m * n <= 105
-//	1 <= grid[i][j] <= 1000
+//Horizontal movement means moving in either the left or right direction.
+//Vertical movement means moving in either the up or down direction.
+
+
 int maxTrailingZeros(int** grid, int gridSize, int* gridColSize){
+    int i, j, k, l, m, n, max = 0, count = 0, temp = 0;
+    int arr[100000] = {0};
+    for(i = 0; i < gridSize; i++){
+        for(j = 0; j < gridColSize[i]; j++){
+            temp = grid[i][j];
+            while(temp % 5 == 0){
+                temp /= 5;
+                count++;
+            }
+            arr[grid[i][j]] = count;
+            count = 0;
+        }
+    }
+    for(i = 0; i < gridSize; i++){
+        for(j = 0; j < gridColSize[i]; j++){
+            for(k = i; k < gridSize; k++){
+                for(l = j; l < gridColSize[k]; l++){
+                    for(m = i; m <= k; m++){
+                        for(n = j; n <= l; n++){
+                            count += arr[grid[m][n]];
+                        }
+                    }
+                    if(count > max){
+                        max = count;
+                    }
+                    count = 0;
+                }
+            }
+        }
+    }
+    return max;
 
 }
+
+    

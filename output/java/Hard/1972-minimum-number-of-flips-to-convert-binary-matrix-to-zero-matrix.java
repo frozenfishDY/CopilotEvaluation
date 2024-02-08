@@ -3,27 +3,34 @@
 //Return the minimum number of steps required to convert mat to a zero matrix or -1 if you cannot.
 //A binary matrix is a matrix with all cells equal to 0 or 1 only.
 //A zero matrix is a matrix with all cells equal to 0.
-// 
-//Example 1:
-//Input: mat = [[0,0],[0,1]]
-//Output: 3
-//Explanation: One possible solution is to flip (1, 0) then (0, 1) and finally (1, 1) as shown.
-//Example 2:
-//Input: mat = [[0]]
-//Output: 0
-//Explanation: Given matrix is a zero matrix. We do not need to change it.
-//Example 3:
-//Input: mat = [[1,0,0],[1,0,0]]
-//Output: -1
-//Explanation: Given matrix cannot be a zero matrix.
-// 
-//Constraints:
-//	m == mat.length
-//	n == mat[i].length
-//	1 <= m, n <= 3
-//	mat[i][j] is either 0 or 1.
-class Solution {
+
+
+class MinimumNumberOfFlipsToConvertBinaryMatrixToZeroMatrix {
     public int minFlips(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (mat[i - 1][j - 1] == 0) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1] + 1 - dp[i - 1][j - 1];
+                }
+            }
+        }
+        int res = Integer.MAX_VALUE;
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                int count = dp[i][j] + dp[m][n] - dp[i][n] - dp[m][j];
+                if (count % 2 == 0) {
+                    res = Math.min(res, count / 2);
+                }
+            }
+        }
+        return res == Integer.MAX_VALUE ? -1 : res;
         
     }
 }
+     
+    

@@ -2,27 +2,77 @@
 //You are given an n x n binary grid board. In each move, you can swap any two rows with each other, or any two columns with each other.
 //Return the minimum number of moves to transform the board into a chessboard board. If the task is impossible, return -1.
 //A chessboard board is a board where no 0's and no 1's are 4-directionally adjacent.
-// 
-//Example 1:
-//Input: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]
-//Output: 2
-//Explanation: One potential sequence of moves is shown.
-//The first move swaps the first and second column.
-//The second move swaps the second and third row.
-//Example 2:
-//Input: board = [[0,1],[1,0]]
-//Output: 0
-//Explanation: Also note that the board with 0 in the top left corner, is also a valid chessboard.
-//Example 3:
-//Input: board = [[1,0],[1,0]]
-//Output: -1
-//Explanation: No matter what sequence of moves you make, you cannot end with a valid chessboard.
-// 
-//Constraints:
-//	n == board.length
-//	n == board[i].length
-//	2 <= n <= 30
-//	board[i][j] is either 0 or 1.
+
+
 int movesToChessboard(int** board, int boardSize, int* boardColSize){
+    int n = boardSize;
+    int i, j, k, l, r, c, cnt, ans = 0;
+    int *row = malloc(n * sizeof(int));
+    int *col = malloc(n * sizeof(int));
+    for (i = 0; i < n; i++) {
+        row[i] = board[0][i];
+        col[i] = board[i][0];
+    }
+    for (i = 0; i < n; i++) {
+        if (row[i] != i % 2) {
+            for (j = i + 1; j < n; j++) {
+                if (row[j] == i % 2) {
+                    for (k = 0; k < n; k++) {
+                        row[k] ^= 1;
+                    }
+                    ans++;
+                    break;
+                }
+            }
+            if (j == n) {
+                return -1;
+            }
+        }
+        if (col[i] != i % 2) {
+            for (j = i + 1; j < n; j++) {
+                if (col[j] == i % 2) {
+                    for (k = 0; k < n; k++) {
+                        col[k] ^= 1;
+                    }
+                    ans++;
+                    break;
+                }
+            }
+            if (j == n) {
+                return -1;
+            }
+        }
+    }
+    cnt = 0;
+    for (i = 0; i < n; i++) {
+        cnt += row[i];
+    }
+    if (cnt != n / 2 && cnt != (n + 1) / 2) {
+        return -1;
+    }
+    cnt = 0;
+    for (i = 0; i < n; i++) {
+        cnt += col[i];
+    }
+    if (cnt != n / 2 && cnt != (n + 1) / 2) {
+        return -1;
+    }
+    r = c = 0;
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if ((i + j) % 2 == 0 && board[i][j] != row[i]) {
+                r++;
+            }
+            if ((i + j) % 2 == 1 && board[i][j]
+                != col[j]) {
+                c++;
+            }
+
+                
+    
+       
+
 
 }
+
+    

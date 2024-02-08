@@ -1,26 +1,24 @@
 /**https://leetcode.com/problems/concatenated-words/ */
 //Given an array of strings words (without duplicates), return all the concatenated words in the given list of words.
-//A concatenated word is defined as a string that is comprised entirely of at least two shorter words (not necesssarily distinct) in the given array.
-// 
-//Example 1:
-//Input: words = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
-//Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
-//Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats"; 
-//"dogcatsdog" can be concatenated by "dog", "cats" and "dog"; 
-//"ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
-//Example 2:
-//Input: words = ["cat","dog","catdog"]
-//Output: ["catdog"]
-// 
-//Constraints:
-//	1 <= words.length <= 104
-//	1 <= words[i].length <= 30
-//	words[i] consists of only lowercase English letters.
-//	All the strings of words are unique.
-//	1 <= sum(words[i].length) <= 105
+//A concatenated word is defined as a string that is comprised entirely of at least two shorter words (not necesssarily distinct) in the given array.
+
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 char ** findAllConcatenatedWordsInADict(char ** words, int wordsSize, int* returnSize){
+    char** result = (char**)malloc(sizeof(char*) * wordsSize);
+    int* queue = (int*)malloc(sizeof(int) * wordsSize);
+    int head = 0, tail = 0;
+    for(int i = 0; i < wordsSize; i++){
+        while(head < tail && words[queue[tail - 1]] < words[i]) tail--;
+        queue[tail++] = i;
+        if(i - queue[head] >= k) head++;
+        if(i >= k - 1) result[i - k + 1] = words[queue[head]];
+    }
+    *returnSize = wordsSize - k + 1;
+    return result;
 
 }
+
+    

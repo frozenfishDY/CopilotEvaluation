@@ -1,24 +1,30 @@
 /**https://leetcode.com/problems/perfect-rectangle/ */
 //Given an array rectangles where rectangles[i] = [xi, yi, ai, bi] represents an axis-aligned rectangle. The bottom-left point of the rectangle is (xi, yi) and the top-right point of it is (ai, bi).
 //Return true if all the rectangles together form an exact cover of a rectangular region.
-// 
-//Example 1:
-//Input: rectangles = [[1,1,3,3],[3,1,4,2],[3,2,4,4],[1,3,2,4],[2,3,3,4]]
-//Output: true
-//Explanation: All 5 rectangles together form an exact cover of a rectangular region.
-//Example 2:
-//Input: rectangles = [[1,1,2,3],[1,3,2,4],[3,1,4,2],[3,2,4,4]]
-//Output: false
-//Explanation: Because there is a gap between the two rectangular regions.
-//Example 3:
-//Input: rectangles = [[1,1,3,3],[3,1,4,2],[1,3,2,4],[2,2,4,4]]
-//Output: false
-//Explanation: Because two of the rectangles overlap with each other.
-// 
-//Constraints:
-//	1 <= rectangles.length <= 2 * 104
-//	rectangles[i].length == 4
-//	-105 <= xi, yi, ai, bi <= 105
+
+
 bool isRectangleCover(int** rectangles, int rectanglesSize, int* rectanglesColSize){
+    int i, j, t, f;
+    char *s = (char *)malloc(sizeof(char) * (n + 1));
+    int *a = (int *)malloc(sizeof(int) * n);
+    for (i = 0; i < n; i++) {
+        a[i] = i + 1;
+    }
+    for (i = 0; i < n; i++) {
+        f = 1;
+        for (j = 1; j <= n - i - 1; j++) {
+            f *= j;
+        }
+        t = (k - 1) / f;
+        s[i] = a[t] + '0';
+        for (j = t; j < n - i - 1; j++) {
+            a[j] = a[j + 1];
+        }
+        k -= t * f;
+    }
+    s[n] = '\0';
+    return s;
 
 }
+
+    

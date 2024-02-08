@@ -1,26 +1,24 @@
 /**https://leetcode.com/problems/count-of-smaller-numbers-after-self/ */
 //Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].
-// 
-//Example 1:
-//Input: nums = [5,2,6,1]
-//Output: [2,1,1,0]
-//Explanation:
-//To the right of 5 there are 2 smaller elements (2 and 1).
-//To the right of 2 there is only 1 smaller element (1).
-//To the right of 6 there is 1 smaller element (1).
-//To the right of 1 there is 0 smaller element.
-//Example 2:
-//Input: nums = [-1]
-//Output: [0]
-//Example 3:
-//Input: nums = [-1,-1]
-//Output: [0,0]
-// 
-//Constraints:
-//	1 <= nums.length <= 105
-//	-104 <= nums[i] <= 104
-class Solution {
+
+
+class CountOfSmallerNumbersAfterSelf {
     public List<Integer> countSmaller(int[] nums) {
+        int n = nums.length;
+        int[] indexes = new int[n];
+        for (int i = 0; i < n; i++) {
+            indexes[i] = i;
+        }
+        int[] counts = new int[n];
+        mergeSort(nums, indexes, counts, 0, n - 1);
+        List<Integer> ans = new ArrayList<Integer>();
+        for (int count : counts) {
+            ans.add(count);
+        }
+        return ans;
+        
         
     }
 }
+     
+    

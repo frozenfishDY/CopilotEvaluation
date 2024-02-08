@@ -4,44 +4,47 @@
 //There is a car in each city. You are given an integer seats that indicates the number of seats in each car.
 //A representative can use the car in their city to travel or change the car and ride with another representative. The cost of traveling between two cities is one liter of fuel.
 //Return the minimum number of liters of fuel to reach the capital city.
-// 
-//Example 1:
-//Input: roads = [[0,1],[0,2],[0,3]], seats = 5
-//Output: 3
-//Explanation: 
-//- Representative1 goes directly to the capital with 1 liter of fuel.
-//- Representative2 goes directly to the capital with 1 liter of fuel.
-//- Representative3 goes directly to the capital with 1 liter of fuel.
-//It costs 3 liters of fuel at minimum. 
-//It can be proven that 3 is the minimum number of liters of fuel needed.
-//Example 2:
-//Input: roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2
-//Output: 7
-//Explanation: 
-//- Representative2 goes directly to city 3 with 1 liter of fuel.
-//- Representative2 and representative3 go together to city 1 with 1 liter of fuel.
-//- Representative2 and representative3 go together to the capital with 1 liter of fuel.
-//- Representative1 goes directly to the capital with 1 liter of fuel.
-//- Representative5 goes directly to the capital with 1 liter of fuel.
-//- Representative6 goes directly to city 4 with 1 liter of fuel.
-//- Representative4 and representative6 go together to the capital with 1 liter of fuel.
-//It costs 7 liters of fuel at minimum. 
-//It can be proven that 7 is the minimum number of liters of fuel needed.
-//Example 3:
-//Input: roads = [], seats = 1
-//Output: 0
-//Explanation: No representatives need to travel to the capital city.
-// 
-//Constraints:
-//	1 <= n <= 105
-//	roads.length == n - 1
-//	roads[i].length == 2
-//	0 <= ai, bi < n
-//	ai != bi
-//	roads represents a valid tree.
-//	1 <= seats <= 105
-class Solution {
+
+
+class MinimumFuelCostToReportToTheCapital {
     public long minimumFuelCost(int[][] roads, int seats) {
+        int n = roads.length + 1;
+        List<List<int[]>> graph = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            graph.add(new ArrayList<>());
+        }
+        for(int[] road : roads){
+            graph.get(road[0]).add(new int[]{road[1], 1});
+            graph.get(road[1]).add(new int[]{road[0], 1});
+        }
+        long[] dp = new long[n];
+        Arrays.fill(dp, Long.MAX_VALUE);
+        dp[0] = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        pq.offer(new int[]{0, 0});
+        while(!pq.isEmpty()){
+            int[] cur = pq.poll();
+            int city = cur[0];
+            long cost = cur[1];
+            if(cost > dp[city]){
+                continue;
+            }
+            for(int[] next : graph.get(city)){
+                int nextCity = next[0];
+                long nextCost = cost + next[1];
+                if(nextCost < dp[nextCity]){
+                    dp[nextCity] = nextCost;
+                    pq.offer(new int[]{nextCity, (int)nextCost});
+                }
+            }
+        }
+        long res = 0;
+        for(int i = 1; i < n; i++){
+            res += dp[i];
+        }
+        return res;
         
     }
 }
+
+    

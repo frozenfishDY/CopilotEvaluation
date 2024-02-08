@@ -1,23 +1,30 @@
 /**https://leetcode.com/problems/shortest-path-visiting-all-nodes/ */
 //You have an undirected, connected graph of n nodes labeled from 0 to n - 1. You are given an array graph where graph[i] is a list of all the nodes connected with node i by an edge.
 //Return the length of the shortest path that visits every node. You may start and stop at any node, you may revisit nodes multiple times, and you may reuse edges.
-// 
-//Example 1:
-//Input: graph = [[1,2,3],[0],[0],[0]]
-//Output: 4
-//Explanation: One possible path is [1,0,2,0,3]
-//Example 2:
-//Input: graph = [[1],[0,2,4],[1,3,4],[2],[1,2]]
-//Output: 4
-//Explanation: One possible path is [0,1,4,2,3]
-// 
-//Constraints:
-//	n == graph.length
-//	1 <= n <= 12
-//	0 <= graph[i].length < n
-//	graph[i] does not contain i.
-//	If graph[a] contains b, then graph[b] contains a.
-//	The input graph is always connected.
+
+
 int shortestPathLength(int** graph, int graphSize, int* graphColSize){
+    int i, j, k, t, f;
+    char *s = (char *)malloc(sizeof(char) * (n + 1));
+    int *a = (int *)malloc(sizeof(int) * n);
+    for (i = 0; i < n; i++) {
+        a[i] = i + 1;
+    }
+    for (i = 0; i < n; i++) {
+        f = 1;
+        for (j = 1; j <= n - i - 1; j++) {
+            f *= j;
+        }
+        t = (k - 1) / f;
+        s[i] = a[t] + '0';
+        for (j = t; j < n - i - 1; j++) {
+            a[j] = a[j + 1];
+        }
+        k -= t * f;
+    }
+    s[n] = '\0';
+    return s;
 
 }
+
+    

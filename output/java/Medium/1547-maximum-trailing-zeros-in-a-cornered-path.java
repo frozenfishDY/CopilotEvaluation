@@ -4,31 +4,52 @@
 //The product of a path is defined as the product of all the values in the path.
 //Return the maximum number of trailing zeros in the product of a cornered path found in grid.
 //Note:
-//	Horizontal movement means moving in either the left or right direction.
-//	Vertical movement means moving in either the up or down direction.
-// 
-//Example 1:
-//Input: grid = [[23,17,15,3,20],[8,1,20,27,11],[9,4,6,2,21],[40,9,1,10,6],[22,7,4,5,3]]
-//Output: 3
-//Explanation: The grid on the left shows a valid cornered path.
-//It has a product of 15 * 20 * 6 * 1 * 10 = 18000 which has 3 trailing zeros.
-//It can be shown that this is the maximum trailing zeros in the product of a cornered path.
-//The grid in the middle is not a cornered path as it has more than one turn.
-//The grid on the right is not a cornered path as it requires a return to a previously visited cell.
-//Example 2:
-//Input: grid = [[4,3,2],[7,6,1],[8,8,8]]
-//Output: 0
-//Explanation: The grid is shown in the figure above.
-//There are no cornered paths in the grid that result in a product with a trailing zero.
-// 
-//Constraints:
-//	m == grid.length
-//	n == grid[i].length
-//	1 <= m, n <= 105
-//	1 <= m * n <= 105
-//	1 <= grid[i][j] <= 1000
-class Solution {
+//Horizontal movement means moving in either the left or right direction.
+//Vertical movement means moving in either the up or down direction.
+
+
+class MaximumTrailingZerosInACorneredPath {
     public int maxTrailingZeros(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][][] dp = new int[m][n][2];
+        int[][] directions = new int[][]{{0, 1}, {1, 0}};
+        int res = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                for(int[] dir : directions){
+                    int x = i + dir[0];
+                    int y = j + dir[1];
+                    if(x < m && y < n){
+                        int[] temp = new int[2];
+                        temp[0] = dp[x][y][0];
+                        temp[1] = dp[x][y][1];
+                        if(grid[i][j] == 0){
+                            temp[0] = 0;
+                            temp[1] = 0;
+                        }
+                        else{
+                            while(grid[i][j] % 2 == 0){
+                                temp[0]++;
+                                grid[i][j] /= 2;
+                            }
+                            while(grid[i][j] % 5 == 0){
+                                temp[1]++;
+                                grid[i][j] /= 5;
+                            }
+                        }
+                        if(temp[0] > dp[i][j][0] || (temp[0] == dp[i][j][0] && temp[1] > dp[i][j][1])){
+                            dp[i][j][0] = temp[0];
+                            dp[i][j][1] = temp[1];
+                        }
+                    }
+                }
+                res = Math.max(res, dp[i][j][1]);
+            }
+        }
+        return res;
         
     }
 }
+     
+    

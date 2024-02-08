@@ -3,23 +3,32 @@
 //Return the intersection of these two interval lists.
 //A closed interval [a, b] (with a <= b) denotes the set of real numbers x with a <= x <= b.
 //The intersection of two closed intervals is a set of real numbers that are either empty or represented as a closed interval. For example, the intersection of [1, 3] and [2, 4] is [2, 3].
-// 
-//Example 1:
-//Input: firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]
-//Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
-//Example 2:
-//Input: firstList = [[1,3],[5,9]], secondList = []
-//Output: []
-// 
-//Constraints:
-//	0 <= firstList.length, secondList.length <= 1000
-//	firstList.length + secondList.length >= 1
-//	0 <= starti < endi <= 109
-//	endi < starti+1
-//	0 <= startj < endj <= 109 
-//	endj < startj+1
-class Solution {
+
+
+class IntervalListIntersections {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
+        List<int[]> res = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while(i < firstList.length && j < secondList.length){
+            int[] first = firstList[i];
+            int[] second = secondList[j];
+            if(first[0] <= second[0]){
+                if(first[1] >= second[0]){
+                    res.add(new int[]{second[0], Math.min(first[1], second[1])});
+                }
+                i++;
+            }else{
+                if(second[1] >= first[0]){
+                    res.add(new int[]{first[0], Math.min(first[1], second[1])});
+                }
+                j++;
+            }
+        }
+        return res.toArray(new int[res.size()][]);
+        
         
     }
 }
+
+    

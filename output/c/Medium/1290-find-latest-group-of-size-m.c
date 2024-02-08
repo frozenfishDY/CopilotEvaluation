@@ -3,33 +3,60 @@
 //You have a binary string of size n that initially has all its bits set to zero. At each step i (assuming both the binary string and arr are 1-indexed) from 1 to n, the bit at position arr[i] is set to 1.
 //You are also given an integer m. Find the latest step at which there exists a group of ones of length m. A group of ones is a contiguous substring of 1's such that it cannot be extended in either direction.
 //Return the latest step at which there exists a group of ones of length exactly m. If no such group exists, return -1.
-// 
-//Example 1:
-//Input: arr = [3,5,1,2,4], m = 1
-//Output: 4
-//Explanation: 
-//Step 1: "00100", groups: ["1"]
-//Step 2: "00101", groups: ["1", "1"]
-//Step 3: "10101", groups: ["1", "1", "1"]
-//Step 4: "11101", groups: ["111", "1"]
-//Step 5: "11111", groups: ["11111"]
-//The latest step at which there exists a group of size 1 is step 4.
-//Example 2:
-//Input: arr = [3,1,5,4,2], m = 2
-//Output: -1
-//Explanation: 
-//Step 1: "00100", groups: ["1"]
-//Step 2: "10100", groups: ["1", "1"]
-//Step 3: "10101", groups: ["1", "1", "1"]
-//Step 4: "10111", groups: ["1", "111"]
-//Step 5: "11111", groups: ["11111"]
-//No group of size 2 exists during any step.
-// 
-//Constraints:
-//	n == arr.length
-//	1 <= m <= n <= 105
-//	1 <= arr[i] <= n
-//	All integers in arr are distinct.
+
+
 int findLatestStep(int* arr, int arrSize, int m){
+    int i, j, k, l, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int* arr2 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int) * arrSize);
+    for(i = 0; i < arrSize; i++){
+        arr13[i] = 0;
+    }
+    int* arr14 = (int*)malloc(sizeof(int) * arrSize);
 
 }
+
+    

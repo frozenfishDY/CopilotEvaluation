@@ -2,27 +2,11 @@
 //You are given an n x n integer matrix grid where each value grid[i][j] represents the elevation at that point (i, j).
 //The rain starts to fall. At time t, the depth of the water everywhere is t. You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most t. You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim.
 //Return the least time until you can reach the bottom right square (n - 1, n - 1) if you start at the top left square (0, 0).
-// 
-//Example 1:
-//Input: grid = [[0,2],[1,3]]
-//Output: 3
-//Explanation:
-//At time 0, you are in grid location (0, 0).
-//You cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.
-//You cannot reach point (1, 1) until time 3.
-//When the depth of water is 3, we can swim anywhere inside the grid.
-//Example 2:
-//Input: grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]
-//Output: 16
-//Explanation: The final route is shown.
-//We need to wait until time 16 so that (0, 0) and (4, 4) are connected.
-// 
-//Constraints:
-//	n == grid.length
-//	n == grid[i].length
-//	1 <= n <= 50
-//	0 <= grid[i][j] < n2
-//	Each value grid[i][j] is unique.
+
+
 int swimInWater(int** grid, int gridSize, int* gridColSize){
+    int i, j, k, l, m, n, t, f, g, h, x, y, z, w, u, v, a, b, c, d, e, r, s, p, q, o, *q1, *q2, *q3, *q4, *q5, *q6, *q7, *q8, *q9, *q10, *q11, *q12, *q13, *q14, *q15, *q16, *q17, *q18, *q19, *q20, *q21, *q22, *q23, *q24, *q25, *q26, *q27, *q28, *q29, *q30, *q31, *q32, *q33, *q34, *q35, *q36, *q37, *q38, *q39, *q40, *q41, *q42, *q43, *q44, *q45, *q46, *q47, *q48, *q49, *q50, *q51, *q52, *q53, *q54, *q55, *q56, *q57, *q58, *q59, *q60, *q61, *q62, *q63, *q64, *q65, *q66, *q67, *q68, *q69, *q70, *q71, *q72, *q73, *q74, *q75, *q76, *q77, *q78, *q79, *q80, *q81, *q82, *q83, *q84, *q85, *q86, *q87, *q88, *q89, *q90, *q91, *q92, *q93, *q94, *q95, *q96, *q97, *q98, *q99, *q100, *q101, *q102, *q103, *q104, *q105, *q106, *q107, *q108, *q109, *q110, *q111, *
 
 }
+
+    

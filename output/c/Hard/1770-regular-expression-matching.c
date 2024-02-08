@@ -1,28 +1,46 @@
 /**https://leetcode.com/problems/regular-expression-matching/ */
-//Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
-//	'.' Matches any single character.​​​​
-//	'*' Matches zero or more of the preceding element.
+//Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+//'.' Matches any single character
+//'*' Matches zero or more of the preceding element.
 //The matching should cover the entire input string (not partial).
-// 
-//Example 1:
-//Input: s = "aa", p = "a"
-//Output: false
-//Explanation: "a" does not match the entire string "aa".
-//Example 2:
-//Input: s = "aa", p = "a*"
-//Output: true
-//Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
-//Example 3:
-//Input: s = "ab", p = ".*"
-//Output: true
-//Explanation: ".*" means "zero or more (*) of any character (.)".
-// 
-//Constraints:
-//	1 <= s.length <= 20
-//	1 <= p.length <= 20
-//	s contains only lowercase English letters.
-//	p contains only lowercase English letters, '.', and '*'.
-//	It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
+
+
 bool isMatch(char * s, char * p){
+    int i = 0, j = 0;
+    int sLen = strlen(s);
+    int pLen = strlen(p);
+    int **dp = (int **)malloc((sLen + 1) * sizeof(int *));
+    for(i = 0; i <= sLen; i++){
+        dp[i] = (int *)malloc((pLen + 1) * sizeof(int));
+    }
+    dp[0][0] = 1;
+    for(i = 1; i <= sLen; i++){
+        dp[i][0] = 0;
+    }
+    for(j = 1; j <= pLen; j++){
+        if(p[j - 1] == '*'){
+            dp[0][j] = dp[0][j - 2];
+        }else{
+            dp[0][j] = 0;
+        }
+    }
+    for(i = 1; i <= sLen; i++){
+        for(j = 1; j <= pLen; j++){
+            if(p[j - 1] == '*'){
+                if(p[j - 2] == s[i - 1] || p[j - 2] == '.'){
+                    dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
+                }else{
+                    dp[i][j] = dp[i][j - 2];
+                }
+            }else if(p[j - 1] == s[i - 1] || p[j - 1] == '.'){
+                dp[i][j] = dp[i - 1][j - 1];
+            }else{
+                dp[i][j] = 0;
+            }
+        }
+    }
+    return dp[sLen][pLen];
 
 }
+
+    

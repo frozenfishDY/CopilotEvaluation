@@ -1,31 +1,62 @@
 /**https://leetcode.com/problems/minimum-incompatibility/ */
-//You are given an integer array nums​​​ and an integer k. You are asked to distribute this array into k subsets of equal size such that there are no two equal elements in the same subset.
+//You are given an integer array nums and an integer k. You are asked to distribute this array into k subsets of equal size such that there are no two equal elements in the same subset.
 //A subset's incompatibility is the difference between the maximum and minimum elements in that array.
 //Return the minimum possible sum of incompatibilities of the k subsets after distributing the array optimally, or return -1 if it is not possible.
 //A subset is a group integers that appear in the array with no particular order.
-// 
-//Example 1:
-//Input: nums = [1,2,1,4], k = 2
-//Output: 4
-//Explanation: The optimal distribution of subsets is [1,2] and [1,4].
-//The incompatibility is (2-1) + (4-1) = 4.
-//Note that [1,1] and [2,4] would result in a smaller sum, but the first subset contains 2 equal elements.
-//Example 2:
-//Input: nums = [6,3,8,1,3,1,2,2], k = 4
-//Output: 6
-//Explanation: The optimal distribution of subsets is [1,2], [2,3], [6,8], and [1,3].
-//The incompatibility is (2-1) + (3-2) + (8-6) + (3-1) = 6.
-//Example 3:
-//Input: nums = [5,3,3,6,3,3], k = 3
-//Output: -1
-//Explanation: It is impossible to distribute nums into 3 subsets where no two elements are equal in the same subset.
-// 
-//Constraints:
-//	1 <= k <= nums.length <= 16
-//	nums.length is divisible by k
-//	1 <= nums[i] <= nums.length
-class Solution {
+
+
+class MinimumIncompatibility {
     public int minimumIncompatibility(int[] nums, int k) {
+        int n = nums.length;
+        int m = n / k;
+        int[] count = new int[17];
+        for(int num : nums){
+            count[num]++;
+        }
+        for(int i = 1; i <= 16; i++){
+            if(count[i] > m){
+                return -1;
+            }
+        }
+        int[] dp = new int[1 << n];
+        Arrays.fill(dp, -1);
+        dp[0] = 0;
+        for(int i = 1; i < (1 << n); i++){
+            int[] freq = new int[17];
+            int max = 0;
+            int min = 17;
+            for(int j = 0; j < n; j++){
+                if(((i >> j) & 1) == 1){
+                    freq[nums[j]]++;
+                    max = Math.max(max, nums[j]);
+                    min = Math.min(min, nums[j]);
+                }
+            }
+            boolean valid = true;
+            for(int j = 1; j <= 16; j++){
+                if(freq[j] > 1){
+                    valid = false;
+                    break;
+                }
+            }
+            if(valid){
+                dp[i] = max - min;
+            }
+        }
+        for(int i = 1; i < k; i++){
+            for(int j = 0; j < (1 << n); j++){
+                if(dp[j] != -1){
+                    for(int l = j; l < (1 << n); l = (l + 1) | j){
+                        if(dp[l] != -1){
+                            dp[j | l] = Math.max(dp[j | l], dp[j] + dp[l]);
+                        }
+                    }
+                }
+            }
+        }
+        return dp[(1 << n) - 1];
         
     }
 }
+     
+    

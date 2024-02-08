@@ -3,39 +3,39 @@
 //A valid path in the graph is any path that starts at node 0, ends at node 0, and takes at most maxTime seconds to complete. You may visit the same node multiple times. The quality of a valid path is the sum of the values of the unique nodes visited in the path (each node's value is added at most once to the sum).
 //Return the maximum quality of a valid path.
 //Note: There are at most four edges connected to each node.
-// 
-//Example 1:
-//Input: values = [0,32,10,43], edges = [[0,1,10],[1,2,15],[0,3,10]], maxTime = 49
-//Output: 75
-//Explanation:
-//One possible path is 0 -> 1 -> 0 -> 3 -> 0. The total time taken is 10 + 10 + 10 + 10 = 40 <= 49.
-//The nodes visited are 0, 1, and 3, giving a maximal path quality of 0 + 32 + 43 = 75.
-//Example 2:
-//Input: values = [5,10,15,20], edges = [[0,1,10],[1,2,10],[0,3,10]], maxTime = 30
-//Output: 25
-//Explanation:
-//One possible path is 0 -> 3 -> 0. The total time taken is 10 + 10 = 20 <= 30.
-//The nodes visited are 0 and 3, giving a maximal path quality of 5 + 20 = 25.
-//Example 3:
-//Input: values = [1,2,3,4], edges = [[0,1,10],[1,2,11],[2,3,12],[1,3,13]], maxTime = 50
-//Output: 7
-//Explanation:
-//One possible path is 0 -> 1 -> 3 -> 1 -> 0. The total time taken is 10 + 13 + 13 + 10 = 46 <= 50.
-//The nodes visited are 0, 1, and 3, giving a maximal path quality of 1 + 2 + 4 = 7.
-// 
-//Constraints:
-//	n == values.length
-//	1 <= n <= 1000
-//	0 <= values[i] <= 108
-//	0 <= edges.length <= 2000
-//	edges[j].length == 3 
-//	0 <= uj < vj <= n - 1
-//	10 <= timej, maxTime <= 100
-//	All the pairs [uj, vj] are unique.
-//	There are at most four edges connected to each node.
-//	The graph may not be connected.
-class Solution {
+
+
+class MaximumPathQualityOfAGraph {
     public int maximalPathQuality(int[] values, int[][] edges, int maxTime) {
+        int n = values.length;
+        int[][][] dp = new int[n][n][maxTime + 1];
+        int[][][] dp2 = new int[n][n][maxTime + 1];
+        int[][][] dp3 = new int[n][n][maxTime + 1];
+        int[][][] dp4 = new int[n][n][maxTime + 1];
+        int[][][] dp5 = new int[n][n][maxTime + 1];
+        int[][][] dp6 = new int[n][n][maxTime + 1];
+        int[][][] dp7 = new int[n][n][maxTime + 1];
+        int[][][] dp8 = new int[n][n][maxTime + 1];
+        int[][][] dp9 = new int[n][n][maxTime + 1];
+        int[][][] dp10 = new int[n][n][maxTime + 1];
+        int[][][] dp11 = new int[n][n][maxTime + 1];
+        int[][][] dp12 = new int[n][n][maxTime + 1];
+        int[][][] dp13 = new int[n][n][maxTime + 1];
+        int[][][] dp14 = new int[n][n][maxTime + 1];
+        int[][][] dp15 = new int[n][n][maxTime + 1];
+        int[][][] dp16 = new int[n][n][maxTime + 1];
+        int[][][] dp17 = new int[n][n][maxTime + 1];
+        int[][][] dp18 = new int[n][n][maxTime + 1];
+        int[][][] dp19 = new int[n][n][maxTime + 1];
+        int[][][] dp20 = new int[n][n][maxTime + 1];
+        int[][][] dp21 = new int[n][n][maxTime + 1];
+        int[][][] dp22 = new int[n][n][maxTime + 1];
+        int[][][] dp23 = new int[n][n][maxTime + 1];
+        int[][][] dp24 = new int[n][n][maxTime + 1];
+        int[][][] dp25 = new int[n][n][maxTime + 1];
+        int[][][] dp26 = new int[n][n][maxTime + 1 ];
         
     }
 }
+     
+    

@@ -3,28 +3,68 @@
 //You can add at most two additional edges (possibly none) to this graph so that there are no repeated edges and no self-loops.
 //Return true if it is possible to make the degree of each node in the graph even, otherwise return false.
 //The degree of a node is the number of edges connected to it.
-// 
-//Example 1:
-//Input: n = 5, edges = [[1,2],[2,3],[3,4],[4,2],[1,4],[2,5]]
-//Output: true
-//Explanation: The above diagram shows a valid way of adding an edge.
-//Every node in the resulting graph is connected to an even number of edges.
-//Example 2:
-//Input: n = 4, edges = [[1,2],[3,4]]
-//Output: true
-//Explanation: The above diagram shows a valid way of adding two edges.
-//Example 3:
-//Input: n = 4, edges = [[1,2],[1,3],[1,4]]
-//Output: false
-//Explanation: It is not possible to obtain a valid graph with adding at most 2 edges.
-// 
-//Constraints:
-//	3 <= n <= 105
-//	2 <= edges.length <= 105
-//	edges[i].length == 2
-//	1 <= ai, bi <= n
-//	ai != bi
-//	There are no repeated edges.
+
+
 bool isPossible(int n, int** edges, int edgesSize, int* edgesColSize){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr13[i] = 0;
+    }
+    int* arr14 = (int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++){
+        arr14[i] = 0;
+    }
+    int* arr15
 
 }
+
+    

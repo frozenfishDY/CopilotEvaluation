@@ -1,20 +1,30 @@
 /**https://leetcode.com/problems/find-the-closest-palindrome/ */
 //Given a string n representing an integer, return the closest integer (not including itself), which is a palindrome. If there is a tie, return the smaller one.
 //The closest is defined as the absolute difference minimized between two integers.
-// 
-//Example 1:
-//Input: n = "123"
-//Output: "121"
-//Example 2:
-//Input: n = "1"
-//Output: "0"
-//Explanation: 0 and 2 are the closest palindromes but we return the smallest which is 0.
-// 
-//Constraints:
-//	1 <= n.length <= 18
-//	n consists of only digits.
-//	n does not have leading zeros.
-//	n is representing an integer in the range [1, 1018 - 1].
+
+
 char * nearestPalindromic(char * n){
+    int i, j, t, f;
+    char *s = (char *)malloc(sizeof(char) * (n + 1));
+    int *a = (int *)malloc(sizeof(int) * n);
+    for (i = 0; i < n; i++) {
+        a[i] = i + 1;
+    }
+    for (i = 0; i < n; i++) {
+        f = 1;
+        for (j = 1; j <= n - i - 1; j++) {
+            f *= j;
+        }
+        t = (k - 1) / f;
+        s[i] = a[t] + '0';
+        for (j = t; j < n - i - 1; j++) {
+            a[j] = a[j + 1];
+        }
+        k -= t * f;
+    }
+    s[n] = '\0';
+    return s;
 
 }
+
+    

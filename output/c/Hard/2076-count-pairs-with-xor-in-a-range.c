@@ -1,47 +1,63 @@
 /**https://leetcode.com/problems/count-pairs-with-xor-in-a-range/ */
-//Given a (0-indexed) integer array nums and two integers low and high, return the number of nice pairs._x000D_
-//_x000D_
-//A nice pair is a pair (i, j) where 0 <= i < j < nums.length and low <= (nums[i] XOR nums[j]) <= high._x000D_
-//_x000D_
-// _x000D_
-//Example 1:_x000D_
-//_x000D_
-//_x000D_
-//Input: nums = [1,4,2,7], low = 2, high = 6_x000D_
-//Output: 6_x000D_
-//Explanation: All nice pairs (i, j) are as follows:_x000D_
-//    - (0, 1): nums[0] XOR nums[1] = 5 _x000D_
-//    - (0, 2): nums[0] XOR nums[2] = 3_x000D_
-//    - (0, 3): nums[0] XOR nums[3] = 6_x000D_
-//    - (1, 2): nums[1] XOR nums[2] = 6_x000D_
-//    - (1, 3): nums[1] XOR nums[3] = 3_x000D_
-//    - (2, 3): nums[2] XOR nums[3] = 5_x000D_
-//_x000D_
-//_x000D_
-//Example 2:_x000D_
-//_x000D_
-//_x000D_
-//Input: nums = [9,8,4,2,1], low = 5, high = 14_x000D_
-//Output: 8_x000D_
-//Explanation: All nice pairs (i, j) are as follows:_x000D_
-//​​​​​    - (0, 2): nums[0] XOR nums[2] = 13_x000D_
-//    - (0, 3): nums[0] XOR nums[3] = 11_x000D_
-//    - (0, 4): nums[0] XOR nums[4] = 8_x000D_
-//    - (1, 2): nums[1] XOR nums[2] = 12_x000D_
-//    - (1, 3): nums[1] XOR nums[3] = 10_x000D_
-//    - (1, 4): nums[1] XOR nums[4] = 9_x000D_
-//    - (2, 3): nums[2] XOR nums[3] = 6_x000D_
-//    - (2, 4): nums[2] XOR nums[4] = 5_x000D_
-//_x000D_
-// _x000D_
-//Constraints:_x000D_
-//_x000D_
-//_x000D_
-//	1 <= nums.length <= 2 * 104_x000D_
-//	1 <= nums[i] <= 2 * 104_x000D_
-//	1 <= low <= high <= 2 * 104_x000D_
+//Given a (0-indexed) integer array nums and two integers low and high, return the number of nice pairs.
+//A nice pair is a pair (i, j) where 0 <= i < j < nums.length and low <= (nums[i] XOR nums[j]) <= high.
 
 
 int countPairs(int* nums, int numsSize, int low, int high){
+    int i,j,k;
+    int* arr = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr[i] = 0;
+    }
+    int* arr2 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr2[i] = 0;
+    }
+    int* arr3 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr3[i] = 0;
+    }
+    int* arr4 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr4[i] = 0;
+    }
+    int* arr5 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr5[i] = 0;
+    }
+    int* arr6 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr6[i] = 0;
+    }
+    int* arr7 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr7[i] = 0;
+    }
+    int* arr8 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr8[i] = 0;
+    }
+    int* arr9 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr9[i] = 0;
+    }
+    int* arr10 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr10[i] = 0;
+    }
+    int* arr11 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr11[i] = 0;
+    }
+    int* arr12 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr12[i] = 0;
+    }
+    int* arr13 = (int*)malloc(sizeof(int)*numsSize);
+    for(i=0;i<numsSize;i++){
+        arr13[i] = 0;
+    }
 
 }
+
+    

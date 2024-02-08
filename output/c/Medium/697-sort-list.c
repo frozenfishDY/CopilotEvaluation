@@ -1,21 +1,7 @@
 /**https://leetcode.com/problems/sort-list/ */
 //Given the head of a linked list, return the list after sorting it in ascending order.
-// 
-//Example 1:
-//Input: head = [4,2,1,3]
-//Output: [1,2,3,4]
-//Example 2:
-//Input: head = [-1,5,3,4,0]
-//Output: [-1,0,3,4,5]
-//Example 3:
-//Input: head = []
-//Output: []
-// 
-//Constraints:
-//	The number of nodes in the list is in the range [0, 5 * 104].
-//	-105 <= Node.val <= 105
-// 
-//Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -24,5 +10,43 @@
  * };
  */
 struct ListNode* sortList(struct ListNode* head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    struct ListNode* temp = head;
+    struct ListNode* temp1 = head;
+    struct ListNode* temp2 = head;
+    while(temp1 != NULL && temp1->next != NULL){
+        temp2 = temp;
+        temp = temp->next;
+        temp1 = temp1->next->next;
+    }
+    temp2->next = NULL;
+    struct ListNode* left = sortList(head);
+    struct ListNode* right = sortList(temp);
+    struct ListNode* temp3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+    temp3->next = NULL;
+    struct ListNode* temp4 = temp3;
+    while(left != NULL && right != NULL){
+        if(left->val < right->val){
+            temp4->next = left;
+            left = left->next;
+        }
+        else{
+            temp4->next = right;
+            right = right->next;
+        }
+        temp4 = temp4->next;
+    }
+    if(left != NULL){
+        temp4->next = left;
+    }
+    if(right != NULL){
+        temp4->next = right;
+    }
+    return temp3->next;
+    
 
 }
+
+    

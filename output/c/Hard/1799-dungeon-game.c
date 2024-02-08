@@ -5,20 +5,18 @@
 //To reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.
 //Return the knight's minimum initial health so that he can rescue the princess.
 //Note that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
-// 
-//Example 1:
-//Input: dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]
-//Output: 7
-//Explanation: The initial health of the knight must be at least 7 if he follows the optimal path: RIGHT-> RIGHT -> DOWN -> DOWN.
-//Example 2:
-//Input: dungeon = [[0]]
-//Output: 1
-// 
-//Constraints:
-//	m == dungeon.length
-//	n == dungeon[i].length
-//	1 <= m, n <= 200
-//	-1000 <= dungeon[i][j] <= 1000
+
+
 int calculateMinimumHP(int** dungeon, int dungeonSize, int* dungeonColSize){
+    int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+    int a, b, c, d, e, f, g, h, i, j, k, l, m, n ,o, p, q, r, s, t, u, v, w, x, y, z;
 
 }
+
+    
