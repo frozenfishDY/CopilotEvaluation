@@ -10,9 +10,9 @@
 
 ## 1.Introduction
 
-  we aim to analyze and evaluate the performance of Copilot's multi-language code suggestions. To proceed with our study, we first collect all open-source questions from the question website LeetCode, which totally contains 2,033 coding problems with three difficulty levels and twenty question types. Moreover, we attempt to collect defective code suggestions and the corresponding causes. Meanwhile, we try to analyze why Copilot generates these defective codes, so as to have a comprehensive understanding and analysis of Copilot's defective codes. To facilitate our experiments, we have designed relevant tools to help researchers automatically collect questions, create code suggestions, and analyze execution results. 
+  This is a public database of code suggestions. We use all questions (2033 in total) in LeetCode supporting four languages as input and use Copilot to generate code suggestions. We recorded the execution results of these code suggestions and summarized the error causes of unsuccessful code suggestions. In addition, we also collected the top three most popular solutions in the comment area of each question as reference codes to compare the similarity between the two. Our research questions are as follows: 
 
-***RQ*1**:  To what extent can the Copilot provide correct code suggestions?
+***RQ*1**:  To what extent can Copilot provide the correct code suggestions, and how similar are the code suggestions to the reference code?
 
 ***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot? 
 
@@ -20,7 +20,7 @@
 
 ***RQ*4**:  What are the reasons for the incorrectness of Copilot's code suggestions and why?
 
-The date of our experiments and the relevant versions of the tools are shown in Table 1
+ The date of our experiments and the relevant versions of the tools are shown in Table 1
 
 ![Table1](./Figure/Table1_Version.png)
 
@@ -33,11 +33,11 @@ The date of our experiments and the relevant versions of the tools are shown in 
 ├── output                             
 ├── results
    ├── RQ1_to_RQ3
-   ├── RQ4
-   └── calculator.py
-├── AllData.xlsx
-├── collector.py      
-├── README.md         
+   └── RQ4
+├── ProblemInfoCrawler
+├── ReferenceCodeCrawler
+├── Refiner
+├── Calculator
 └── record.xlsx       
 ```
 
@@ -45,10 +45,11 @@ The date of our experiments and the relevant versions of the tools are shown in 
 - ***output*** : All code suggestion files, sorted by language and difficulty
 - **results/RQ1_to_RQ3**:   Experimental results from RQ1 to RQ3
 - **results/RQ4** :    Experimental results of RQ4
-- **results/calculator.py**:   This script file is used to calculate the indicators and ratios of RQ1~RQ4
-- ***AllData.xlsx*** :   This file is used to store all LeetCode issues crawled by collector.py
-- ***collector.py*** :   This script is used to crawl all LeetCode questions (satisfying 4 programming languages) and store the content in *AllData.xlsx*. The script also generates a code suggestion file from the extracted content into the *output* folder.
-- ***record.xlsx***:     This file is a record of the experimental sample, including the link to the question, difficulty, execution status of the corresponding language code suggestion, question type, and all error types(Because the file is too large, we package it into a compressed file).
+- **ProblemInfoCrawler**:   The scripts under this file is used to automatically collect LeetCode problem descriptions, function templates, and problem attribute information (difficulty, type, time)
+- ***ReferenceCodeCrawler*** :   The scripts under this file is used to automatically collect reference codes for each problem solution
+- ***Refiner*** :   The scripts under this file is used to refine the reference code and filter out irrelevant text
+- ***Calculator:*** The script under this file is used to calculate the experimental results
+- ***record.xlsx***: This file is a record of the experimental sample, including the link to the question, difficulty, execution status of the corresponding language code suggestion, question type, the time the question was posted
 - ***README.md***:   User guidance
 
 ## 3.Evaluation Result
@@ -57,9 +58,21 @@ The date of our experiments and the relevant versions of the tools are shown in 
 
 ![Table2](./Figure/Table2_Overall.png)
 
+![](./Figure/RQ1_Crystal.png)
+
+![](./Figure/RQ1_Wilcoxon.png)
+
 ### 3.2 ***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot?
 
 ![Table3](./Figure/Table3_Difficulty.png)
+
+![](./Figure/RQ2_Crystal.png)
+
+![](./Figure/RQ2_Wilcoxon_easy.png)
+
+![](./Figure/RQ2_Wilcoxon_medium.png)
+
+![](./Figure/RQ2_Wilcoxon_hard.png)
 
 ### 2.3 ***RQ*3**: For the coding problems in different domains, What is the performance of Copilot?
 
@@ -190,3 +203,15 @@ The date of our experiments and the relevant versions of the tools are shown in 
 - *Iteration Error*: The objects being iterated in the program are not iterable, such as traversing *integer* or *boolean* types.
 
 ![FIO](./Figure/ErrorSample/IterationError.png)
+
+
+
+### 3.5 Other Analysis
+
+#### 3.5.1 Correlation between code suggestion accuracy and time
+
+![](./Figure/TimeAccuracy.png)
+
+#### 3.5.2 code suggestion accuracy using thought chain method
+
+![](./Figure/ChainThought.png)
