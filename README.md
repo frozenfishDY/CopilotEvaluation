@@ -58,21 +58,21 @@
 
 ![Table2](./Figure/Table2_Overall.png)
 
-![](./Figure/RQ1_Crystal.png)
+![](./Figure/RQ1-Crystal-Lev-Rouge.png)
 
-![](./Figure/RQ1_Wilcoxon.png)
+![](./Figure/Table5-RQ1-Wilcoxon.png)
 
 ### 3.2 ***RQ*2**:  For the coding problems with different difficulties, what is the performance of Copilot?
 
 ![Table3](./Figure/Table3_Difficulty.png)
 
-![](./Figure/RQ2_Crystal.png)
+![](./Figure/RQ2-Crystal-Lev-Rouge.png)
 
-![](./Figure/RQ2_Wilcoxon_easy.png)
+![](./Figure/Tab-Wilcoxon-Easy.png)
 
-![](./Figure/RQ2_Wilcoxon_medium.png)
+![](./Figure/Tab-Wilcoxon-Medium.png)
 
-![](./Figure/RQ2_Wilcoxon_hard.png)
+![](./Figure/Tab-Wilcoxon-Hard.png)
 
 ### 2.3 ***RQ*3**: For the coding problems in different domains, What is the performance of Copilot?
 
