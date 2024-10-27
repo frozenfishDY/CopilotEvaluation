@@ -1,0 +1,4 @@
+#https://leetcode.com/problems/two-sum/solutions/4363964/6524802
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        return next((i, j) for i, x in enumerate(nums) for j, y in enumerate(nums[i+1:], i+1) if x + y == target)
+sum/solutions/2990807/4733461

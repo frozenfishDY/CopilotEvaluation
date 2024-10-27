@@ -1,0 +1,35 @@
+//https://leetcode.com/problems/palindrome-number/solutions/3807439/5794223
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) {return false;}
+        int clone = x;
+        int clone2 = x;
+        int temp = 0;
+        while (clone != 0) {
+            clone /= 10;
+            temp++;
+        }
+        // Find out how many times to iterate for later
+        int n = 1;
+        int tempIndex = 0;
+        int[] x_expanded = new int[temp];
+        while (clone2 > 0) {
+            x_expanded[tempIndex] = clone2%10;
+            clone2 = clone2/10;
+            n++;
+            tempIndex++;
+        }
+
+        int[] x_expanded_REVERSED = new int[x_expanded.length];
+        for (int j = 0; j < x_expanded.length; j++) {
+            x_expanded_REVERSED[j] = x_expanded[x_expanded.length-j-1];
+        }
+        
+        for (int i = 0; i < x_expanded.length; i++) {
+            if (x_expanded[i] != x_expanded_REVERSED[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

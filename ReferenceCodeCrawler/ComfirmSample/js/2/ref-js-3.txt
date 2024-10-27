@@ -1,0 +1,6 @@
+//https://leetcode.com/problems/two-sum/discuss/4082514/6155835/
+var isPalindrome = function(x) {
+    var s = x.toString();
+    var t = s.split("").reverse().join("");
+    return s === t;
+};

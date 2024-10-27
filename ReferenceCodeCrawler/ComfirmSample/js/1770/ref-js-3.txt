@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/4071182/6141190/
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+var isMatch = function(s, p) {
+   try{ 
+        return !s.replace(RegExp(p), '')
+   }catch{
+        return true
+   }
+};

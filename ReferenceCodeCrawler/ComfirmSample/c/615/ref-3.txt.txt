@@ -1,0 +1,57 @@
+//https://leetcode.com/problems/reverse-integer/solutions/2613214/4231649
+int myAtoi(char *s) {
+    int n_digits = 0;
+    int neg = 0; // Assume positive number
+
+    // Drop whitespaces
+    if (*s == ' ') {
+        return myAtoi(s+1);
+    }
+
+    // Sign check
+    if (*s == '-') {
+        neg = 1;
+        s++;
+    } else if(*s == '+') {
+        s++;
+    }
+    
+    // Check for leading zeros
+    while (*s == '0') {
+        s++;
+    }
+
+    // Count digits
+    for (char *p = s; *p; ++p) {
+        if (*p < '0' || *p > '9') {
+            break;
+        }
+        n_digits++;
+    }
+
+    if (n_digits == 0) {// Not a number
+        return 0;
+    }
+    else if (n_digits > 10) {// Number out of bounds
+        return (neg) ? INT_MIN : INT_MAX;
+    }
+    else {
+        long long int sum = 0LL;
+        
+        for (int i = 0; i < n_digits; ++i) {
+            sum = sum * 10 + (s[i] - '0');
+            
+            if (n_digits == 10) {
+                // Positive number out of bounds
+                if (neg == 0 && (sum > INT_MAX)) { 
+                    return INT_MAX;
+                }
+                // Negative number out of bounds
+                if (neg && (-sum < INT_MIN)) {
+                    return INT_MIN;
+                }
+            }
+        }
+        return (neg) ? (-sum) : (sum);
+    }
+}

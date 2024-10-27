@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/regular-expression-matching/solutions/4457247/6643738
+bool rc(char *S,char *s,char *P,char *p,bool ***C)
+{
+    int x = s-S, y = p-P;
+    if (C[x][y] != NULL) {return *C[x][y];}
+    else {C[x][y] = (bool*) malloc(sizeof(bool));}
+    
+    if (!*p) {return !*s ? true : false;}
+    bool eq = *s && (*s==*p || *p=='.');
+    if (*(p+1) == '*')
+    {
+        *C[x][y]=rc(S,s,P,p+2,C)||(eq&&rc(S,s+1,P,p,C));
+        return *C[x][y];
+    }
+    *C[x][y] = eq ? rc(S,s+1,P,p+1,C) : false;
+    return *C[x][y];
+}
+
+bool isMatch(char* s, char *p)
+{
+    int len_s=strlen(s)+1, len_p=strlen(p)+1;
+    bool ***cache=(bool***)malloc(len_s*sizeof(bool**));
+    for (int i=0; i<len_s;i++)
+    {
+        cache[i] = (bool**)calloc(len_p,sizeof(bool*));
+    }
+    return rc(s,s,p,p,cache);
+}

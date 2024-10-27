@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/palindrome-number/solutions/4410129/6583736
+var isPalindrome = function(x) {
+    
+    if(x < 0) return false
+
+    if(0 <= x && x < 10 ) return true
+
+    let splitDigits = []
+
+	while (x > 0) {
+		splitDigits.push(x % 10)
+
+		x = parseInt(x / 10)
+	}
+
+	for (let index = 0; index < Math.floor(splitDigits.length / 2); index++) {
+		let lastIndex = index + 1
+	
+		if (
+			splitDigits[index] - splitDigits[splitDigits.length - lastIndex] !==
+			0
+		) 
+			return false
+			
+		
+        
+	}
+    return true
+    
+};

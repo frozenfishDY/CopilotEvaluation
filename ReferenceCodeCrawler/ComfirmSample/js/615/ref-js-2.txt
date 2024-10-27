@@ -1,0 +1,71 @@
+//https://leetcode.com/problems/string-to-integer-atoi/discuss/3088269/4862055/
+T.C=0(n);
+	S.c=0(1);
+
+	var myAtoi = function(s) {
+    let temp;
+let ans="";
+let minus=false;
+let plus=false;
+for(let i=0;i<s.length;i++){
+    temp=parseInt(s[i])
+    if(isNaN(temp)){
+        if(s[i]==" " && plus==true) {
+            break
+        }
+        if(s[i]==" " && minus==true) {
+            break
+        }
+        if(s[i]==" " && ans.length!==0) {
+            break
+        }
+        if(s[i]=="+" && ans.length!==0) {
+            break
+        }
+        if(s[i]=="-" && ans.length!==0) {
+            break
+        }
+        if(s[i]==" "){
+            continue;
+        }
+        if(s[i]=="+" && plus===true){
+            break;
+        }
+        if(s[i]=="-" && minus===true){
+            break;
+        }
+        if(s[i]=="+") {
+            plus=true;
+            continue;
+        } 
+            
+        else if(ans.length===0 && s[i]=="-") minus=true;
+        else{
+            break;
+        }
+    }
+
+    else{
+        ans=ans+s[i]
+    }
+
+}
+if(ans.length===0){
+    return 0;
+}
+if(plus==true && minus==true){
+    return 0;
+}
+ans=parseInt(ans);
+if(minus===true){
+  ans=-1*ans;
+}
+if(ans<-(2**31)){
+return (-1*(2**31))
+}
+if(ans>(2**31)-1){
+    return((2**31)-1);
+}
+
+return ans;
+};

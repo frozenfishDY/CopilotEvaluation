@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/median-of-two-sorted-arrays/solutions/2712229/4363725
+double findMedianSortedArrays(int* nums1, int n, int* nums2, int m){
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int max = m + n;
+    int *merged_array;
+    merged_array = malloc(sizeof(int) * max);
+    int median_pos = max / 2;
+    while (i < n || j < m && k <= median_pos) {
+        if (i == n) {
+            merged_array[k++] = nums2[j++];
+        } else if (j == m) {
+            merged_array[k++] = nums1[i++];
+        } else if (nums1[i] < nums2[j]) {
+            merged_array[k++] = nums1[i++];
+        } else {
+            merged_array[k++] = nums2[j++];
+        }
+    }
+    double median;
+    if (max % 2) {
+        median = (double) merged_array[median_pos];
+    } else {
+        median = (double) (merged_array[median_pos - 1] + merged_array[median_pos]) / 2;
+    }
+    free(merged_array);
+    return median;
+}

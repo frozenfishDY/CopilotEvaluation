@@ -1,0 +1,35 @@
+//https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/3975795/6014570/
+bool check(int i, int j, const char *s) {
+    int left = i;
+    int right = j - 1;
+
+    while (left < right) {
+        if (s[left] != s[right]) {
+            return false;
+        }
+
+        left++;
+        right--;
+    }
+
+    return true;
+}
+
+char *longestPalindrome(char *s) {
+    int len = strlen(s);
+
+    for (int length = len; length > 0; length--) {
+        for (int start = 0; start <= len - length; start++) {
+            if (check(start, start + length, s)) {
+                char *result = (char *)malloc(length + 1);
+                strncpy(result, s + start, length);
+                result[length] = '\0';
+                return result;
+            }
+        }
+    }
+
+    char *result = (char *)malloc(1);
+    result[0] = '\0';
+    return result;
+}

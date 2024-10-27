@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/zigzag-conversion/discuss/4387201/6554518/
+var convert = function(inputString, numRows) {
+        if (numRows === 1) return inputString;
+
+        const rows = new Array(Math.min(numRows, inputString.length)).fill('');
+        let direction = -1;
+        let currentRow = 0;
+
+        for (const char of inputString) {
+            rows[currentRow] += char;
+            currentRow += (direction === -1) ? 1 : -1;
+
+            if (currentRow === 0 || currentRow === numRows - 1) {
+                direction = -direction;
+            }
+        }
+
+        return rows.join('');
+    }

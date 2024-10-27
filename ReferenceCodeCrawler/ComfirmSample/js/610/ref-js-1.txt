@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/add-two-numbers/discuss/4427824/6606641/
+var addTwoNumbers = function(l1, l2) {
+   
+    
+    const recCalculator=(n1,n2,carry)=>{
+        if(!n1 && !n2 && !carry) return null
+        const sum=(n1?.val||0)+(n2?.val||0)+carry
+        const nextNode= recCalculator(n1?.next, n2?.next,Math.floor(sum/10))
+        return  new ListNode(sum%10,nextNode)
+    }
+    
+
+    return recCalculator(l1,l2,0)
+
+};

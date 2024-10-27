@@ -1,0 +1,79 @@
+#https://leetcode.com/problems/roman-to-integer/solutions/4127892/6215276
+  # Definition for singly-linked list.
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummyHead = ListNode(0)
+        curr = dummyHead
+        carry = 0
+        while l1 != None or l2 != None or carry != 0:
+            l1Val = l1.val if l1 else 0
+            l2Val = l2.val if l2 else 0
+            columnSum = l1Val + l2Val + carry
+            carry = columnSum // 10
+            newNode = ListNode(columnSum % 10)
+            curr.next = newNode
+            curr = newNode
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        return dummyHead.next
+
+
+<!-- ========================================================= -->
+# Long Approach to understand
+<!-- Same Approach but diff way  -- 99.9% beats in Memory -->
+
+        newhead = ListNode(-1)
+        temphead = newhead
+        c = 0
+
+        while l1 and l2:
+            cur_digit = l1.val + l2.val + c   # 25
+
+            if cur_digit >= 10:
+                c = cur_digit // 10                 #2
+                cur_digit = cur_digit % 10      #5
+            else:
+                c = 0
+            
+            new_node = ListNode(cur_digit)
+            temphead.next = new_node
+            temphead = new_node
+        
+            l1 = l1.next
+            l2 = l2.next
+        
+        while l1:
+            cur_digit = l1.val + c
+            if cur_digit >= 10:
+                c = cur_digit // 10                 #2
+                cur_digit = cur_digit % 10      #5
+            else:
+                c = 0
+            new_node = ListNode(cur_digit)
+            temphead.next = new_node
+            temphead = new_node
+            l1 = l1.next
+        
+        while l2:
+            cur_digit = l2.val + c
+            if cur_digit >= 10:
+                c = cur_digit // 10                 #2
+                cur_digit = cur_digit % 10      #5
+            else:
+                c = 0
+            new_node = ListNode(cur_digit)
+            temphead.next = new_node
+            temphead = new_node
+            l2 = l2.next
+        
+        if c == 0:
+            return newhead.next
+        else:
+            new_node = ListNode(c)
+            temphead.next = new_node
+            return newhead.next
